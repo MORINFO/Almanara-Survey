@@ -57,3 +57,21 @@ async function carregarFuncionario() {
 
 }
 carregarFuncionario()
+
+async function enviaPesquisa(){
+  
+  Swal.fire({
+    allowOutsideClick: false,
+    position: 'center',
+    icon: 'success',
+    title: 'Pesquisa enviada com sucesso !',
+    showConfirmButton: false,
+    timer: 2500
+
+  }).then((result) => {
+
+    if (result.dismiss === Swal.DismissReason.timer) {
+      location.reload()
+    }
+  })
+}

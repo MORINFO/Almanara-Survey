@@ -10,11 +10,11 @@
 
 <body>
   @include('nav/nav')
+
   <br><br>
-
   <div class="card container text-center">
-
-    <form>
+    <br>
+    <form onsubmit="enviaPesquisa()">
       <div class="form-row text-center">
         <div class="form-group col-md-12">
           <h4> 1 : Informe a Unidade/Filial :</h4>
@@ -25,26 +25,26 @@
 
         <div class="form-group col-md-12">
           <h4> 2 : Selecione o Gerente :</h4>
-          <select id="selectGerente" class="form-control">
+          <select id="selectGerente" class="form-control" required>
             <option>...</option>
           </select>
         </div>
 
         <div class="form-group col-md-12 ">
           <h4> 3 : Responsável pela coleta de dados:*</h4>
-          <input type="text" class="form-control text-center" id="responsavel">
+          <input type="text" class="form-control text-center" id="responsavel"required>
         </div>
 
         <div class="form-group col-md-12">
           <h4>5. Nome do Colaborador:*</h4>
-          <select id="selectFuncionario" class="form-control">
+          <select id="selectFuncionario" class="form-control"required>
             <option>...</option>
           </select>
         </div>
 
         <div class="form-group col-md-12">
           <h4>6. Temperatura:*</h4>
-          <input type="number" class="form-control text-center" step="0.1" max="50.00" min="30.00" id="responsavel">
+          <input type="number" class="form-control text-center" step="0.1" max="50.00" min="30.00" id="responsavel"required>
         </div>
         <div class="card">
           <div class="form-group col-md-12">
@@ -53,7 +53,7 @@
             <div class="form-check form-check-inline">
               <div class="form-check form-check-radio col float-sm-left">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio1" id="exampleRadios1" value="option1">
+                  <input class="form-check-input" type="radio" name="radio1" id="exampleRadios1" value="option1"required>
                   Não
                   <span class="circle">
                     <span class="check"></span>
@@ -80,7 +80,7 @@
             <div class="form-check form-check-inline">
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios1" value="option1">
+                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios1" value="option1"required>
                   Não
                   <span class="circle">
                     <span class="check"></span>
@@ -106,7 +106,7 @@
             <div class="form-check form-check-inline">
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio3" id="exampleRadios1" value="option1">
+                  <input class="form-check-input" type="radio" name="radio3" id="exampleRadios1" value="option1"required>
                   Não
                   <span class="circle">
                     <span class="check"></span>
@@ -132,7 +132,7 @@
             <div class="form-check form-check-inline">
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio4" id="exampleRadios1" value="option1">
+                  <input class="form-check-input" type="radio" name="radio4" id="exampleRadios1" value="option1"required>
                   Não
                   <span class="circle">
                     <span class="check"></span>
@@ -152,11 +152,30 @@
           </div>
         </div>
 
+        <div class="card">
+          <div class="form-group col-md-12">
+            <h4>TERMO DE RESPONSABILIDADE</h4>
+            <div class="form-check">
+              <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox"required>
+                  Declaro que as informações acima prestadas são verdadeiras, e
+                  assumo a inteira responsabilidade pelas mesmas.*
+                  <span class="form-check-sign">
+                      <span class="check"></span>
+                  </span>
+              </label>
+          </div>
+          </div>
+        </div>
+
       </div><br>
-      <button type="submit" class="btn btn-primary">Enviar Pesquisa <i class="material-icons">send</i></button>
+      <button type="submit" onclick="" class="btn btn-primary">Enviar Pesquisa <i class="material-icons">send</i></button>
     </form>
   </div>
   <br><br>
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>

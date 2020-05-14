@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../css/principal/principal.css" rel="stylesheet">
+
   <title>Principal</title>
 </head>
 
@@ -12,41 +12,43 @@
   @include('nav/nav')
 
   <br><br>
-  <div class="card container text-center">
+  <div class="card container card-principal ">
     <br>
-    <form onsubmit="enviaPesquisa()">
-      <div class="form-row text-center">
+    <form class="" onsubmit="enviaPesquisa()">
+      <div class="form-row ">
+
         <div class="form-group col-md-12">
           <h4> 1 : Informe a Unidade/Filial :</h4>
-          <select id="selectFilial" class="form-control">
+          <select id="selectFilial" class="form-control select-custom">
             <option>...</option>
           </select>
         </div>
 
         <div class="form-group col-md-12">
           <h4> 2 : Selecione o Gerente :</h4>
-          <select id="selectGerente" class="form-control" required>
+          <select id="selectGerente" class="form-control select-custom" required>
             <option>...</option>
           </select>
         </div>
 
-        <div class="form-group col-md-12 ">
+        <div class="form-group col-md-12 div-responsavel ">
           <h4> 3 : Responsável pela coleta de dados:*</h4>
-          <input type="text" class="form-control text-center" id="responsavel"required>
+          <input type="text" class="form-control text-center input-responsavel " id="responsavel"required>
         </div>
 
         <div class="form-group col-md-12">
           <h4>5. Nome do Colaborador:*</h4>
-          <select id="selectFuncionario" class="form-control"required>
+          <select id="selectFuncionario" class="form-control   select-custom"required>
             <option>...</option>
           </select>
         </div>
 
-        <div class="form-group col-md-12">
-          <h4>6. Temperatura:*</h4>
-          <input type="number" class="form-control text-center" step="0.1" max="50.00" min="30.00" id="responsavel"required>
-        </div>
-        <div class="card">
+          <div class="form-group  col-md-5 div-temp">
+            <h4>6. Temperatura Corporal:*</h4>
+            <input type="number" class="form-control text-center input-temp" step="0.1" max="42.00" min="35.00" id="responsavel"required>
+          </div>
+
+        <div class="card card-quests">
           <div class="form-group col-md-12">
             <h4>7. Você está com algum sintoma de gripe ou resfriado (tosse, coriza,
               espirros, etc.) ?*</h4>
@@ -73,7 +75,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card card-quests">
           <div class="form-group col-md-12">
             <h4>8. Na última semana você apresentou febre (acima de 37,8°C) ou
               sintomas de gripe associados com dificuldade para respirar?*</h4>
@@ -100,7 +102,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card card-quests">
           <div class="form-group col-md-12">
             <h4>9. Na última semana, você esteve em contato com algum caso confirmado de COVID-19?*</h4>
             <div class="form-check form-check-inline">
@@ -126,7 +128,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card card-quests">
           <div class="form-group col-md-12">
             <h4>10. Você já foi diagnosticado com COVID-19?*</h4>
             <div class="form-check form-check-inline">
@@ -152,9 +154,9 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card card-quests">
           <div class="form-group col-md-12">
-            <h4>TERMO DE RESPONSABILIDADE</h4>
+            <h4 class="text-center">TERMO DE RESPONSABILIDADE</h4>
             <div class="form-check">
               <label class="form-check-label">
                   <input class="form-check-input" type="checkbox"required>
@@ -169,7 +171,7 @@
         </div>
 
       </div><br>
-      <button type="submit" onclick="" class="btn btn-primary">Enviar Pesquisa <i class="material-icons">send</i></button>
+      <button type="submit" onclick="" class="btn btn-primary col-sm-12">Enviar Pesquisa <i class="material-icons">send</i></button>
     </form>
   </div>
   <br><br>

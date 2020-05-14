@@ -5,3 +5,92 @@ body {
   background-position: center;
   background-size: 400px;
 }
+.select-custom{
+  display: inline-block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  line-height: 1.5;
+  color: #495057;
+  vertical-align: middle;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+option {
+  font-weight: normal;
+  display: block;
+  white-space: pre;
+  min-height: 1.2em;
+  padding: 0px 2px 1px;
+}
+input, button, select, optgroup, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+select {
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: -internal-light-dark-color(black, white);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  -webkit-appearance: menulist;
+  box-sizing: border-box;
+  align-items: center;
+  white-space: pre;
+  -webkit-rtl-ordering: logical;
+  background-color: -internal-light-dark-color(white, black);
+  cursor: default;
+  margin: 0em;
+  font: 400 13.3333px Arial;
+  border-radius: 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(169, 169, 169);
+  border-image: initial;
+}
+.card-principal{
+  max-width: 600px;
+  border-radius: 20px;
+
+}
+.card-quests{
+  margin-bottom: 10px;
+}
+
+.div-temp{
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+.div-responsavel{
+  padding-top: 0px;
+}
+
+.input-responsavel{
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  height: calc(2.25rem + 2px);
+}
+.input-temp{
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  height: calc(2.25rem + 2px);
+}
+
+
+
+
+
+
+
+
+

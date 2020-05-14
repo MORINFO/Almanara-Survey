@@ -1,0 +1,5 @@
+select{
+  text-align: center; /* para firefox */
+  text-align-last: center; /* para chrome */
+  
+  }

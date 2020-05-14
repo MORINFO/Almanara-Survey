@@ -1,0 +1,18 @@
+.custom{
+  padding-top: 10px;
+}
+label{
+  color: black;
+}
+p{
+  color: black;
+}
+.customCheck{
+  float: left;
+  width: 1px;
+  padding-right: 0;
+  margin-right:200px;
+  margin-left: 50px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}

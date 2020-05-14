@@ -1,162 +1,162 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../css/principal/principal.css" rel="stylesheet">
   <title>Principal</title>
 </head>
+
 <body>
   @include('nav/nav')
   <br><br>
 
-<div class="card container text-center">
+  <div class="card container text-center">
 
-  <form>
-    <div class="form-row text-center">
-      <div class="form-group col-md-12">
-        <h4> 1 : Informe a Unidade/Filial :</h4>
-        <select id="selectFilial" class="form-control">
-          <option>...</option>
-        </select>
-      </div>
+    <form>
+      <div class="form-row text-center">
+        <div class="form-group col-md-12">
+          <h4> 1 : Informe a Unidade/Filial :</h4>
+          <select id="selectFilial" class="form-control">
+            <option>...</option>
+          </select>
+        </div>
 
-      <div class="form-group col-md-12">
-        <h4> 2 : Selecione o Gerente :</h4>
-        <select id="selectGerente" class="form-control">
-          <option>...</option>
-        </select>
-      </div>
+        <div class="form-group col-md-12">
+          <h4> 2 : Selecione o Gerente :</h4>
+          <select id="selectGerente" class="form-control">
+            <option>...</option>
+          </select>
+        </div>
 
-      <div class="form-group col-md-12 ">
-        <h4> 3 : Responsável pela coleta de dados:*</h4>
-        <input type="text" class="form-control text-center" id="responsavel">
-      </div>
+        <div class="form-group col-md-12 ">
+          <h4> 3 : Responsável pela coleta de dados:*</h4>
+          <input type="text" class="form-control text-center" id="responsavel">
+        </div>
 
-      <div class="form-group col-md-12">
-        <h4>5. Nome do Colaborador:*</h4>
-        <select id="selectFuncionario" class="form-control">
-          <option>...</option>
-        </select>
-      </div>
+        <div class="form-group col-md-12">
+          <h4>5. Nome do Colaborador:*</h4>
+          <select id="selectFuncionario" class="form-control">
+            <option>...</option>
+          </select>
+        </div>
 
-      <div class="form-group col-md-12">
-        <h4>6. Temperatura:*</h4>
-        <input type="number" class="form-control text-center" step="0.1" max="50.00" min="30.00" id="responsavel">
-      </div>
-
-      <div class="form-group col-md-12">
-        <h4>7. Você está com algum sintoma de gripe ou resfriado (tosse, coriza,
-           espirros, etc.) ?*</h4>
-
-
-            <div class="form-check">
-              <div class="row">
-              <div class="form-check form-check-radio col">
+        <div class="form-group col-md-12">
+          <h4>6. Temperatura:*</h4>
+          <input type="number" class="form-control text-center" step="0.1" max="50.00" min="30.00" id="responsavel">
+        </div>
+        <div class="card">
+          <div class="form-group col-md-12">
+            <h4>7. Você está com algum sintoma de gripe ou resfriado (tosse, coriza,
+              espirros, etc.) ?*</h4>
+            <div class="form-check form-check-inline">
+              <div class="form-check form-check-radio col float-sm-left">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="radio1" id="exampleRadios1" value="option1" >
-                    Não
-                    <span class="circle">
-                        <span class="check"></span>
-                    </span>
-                </label>
-            </div>
-            <div class="form-check form-check-radio col">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="radio1" id="exampleRadios2" value="option2" >
-                    Sim
-                    <span class="circle">
-                        <span class="check"></span>
-                    </span>
-                </label>
-            </div>
-          </div>
-           </div>
-
-      </div>
-
-      <div class="form-group col-md-12">
-        <h4>8. Na última semana você apresentou febre (acima de 37,8°C) ou
-          sintomas de gripe associados com dificuldade para respirar?*</h4>
-          <div class="form-check">
-            <div class="row">
-            <div class="form-check form-check-radio col">
-              <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios1" value="option1" >
+                  <input class="form-check-input" type="radio" name="radio1" id="exampleRadios1" value="option1">
                   Não
                   <span class="circle">
-                      <span class="check"></span>
+                    <span class="check"></span>
                   </span>
-              </label>
-          </div>
-          <div class="form-check form-check-radio col">
-              <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios2" value="option2" >
+                </label>
+              </div>
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio1" id="exampleRadios2" value="option2">
                   Sim
                   <span class="circle">
-                      <span class="check"></span>
+                    <span class="check"></span>
                   </span>
-              </label>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
-         </div>
-      </div>
 
-      <div class="form-group col-md-12">
-        <h4>9. Na última semana, você esteve em contato com algum caso confirmado de COVID-19?*</h4>
-        <div class="form-check">
-          <div class="row">
-          <div class="form-check form-check-radio col">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="radio3" id="exampleRadios1" value="option1" >
-                Não
-                <span class="circle">
+        <div class="card">
+          <div class="form-group col-md-12">
+            <h4>8. Na última semana você apresentou febre (acima de 37,8°C) ou
+              sintomas de gripe associados com dificuldade para respirar?*</h4>
+            <div class="form-check form-check-inline">
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios1" value="option1">
+                  Não
+                  <span class="circle">
                     <span class="check"></span>
-                </span>
-            </label>
-        </div>
-        <div class="form-check form-check-radio col">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="radio3" id="exampleRadios2" value="option2" >
-                Sim
-                <span class="circle">
+                  </span>
+                </label>
+              </div>
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios2" value="option2">
+                  Sim
+                  <span class="circle">
                     <span class="check"></span>
-                </span>
-            </label>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-       </div>
-      </div>
 
-      <div class="form-group col-md-12">
-        <h4>10. Você já foi diagnosticado com COVID-19?*</h4>
-        <div class="form-check">
-          <div class="row">
-          <div class="form-check form-check-radio col">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="radio4" id="exampleRadios1" value="option1" >
-                Não
-                <span class="circle">
+        <div class="card">
+          <div class="form-group col-md-12">
+            <h4>9. Na última semana, você esteve em contato com algum caso confirmado de COVID-19?*</h4>
+            <div class="form-check form-check-inline">
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio3" id="exampleRadios1" value="option1">
+                  Não
+                  <span class="circle">
                     <span class="check"></span>
-                </span>
-            </label>
-        </div>
-        <div class="form-check form-check-radio col">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="radio4" id="exampleRadios2" value="option2" >
-                Sim
-                <span class="circle">
+                  </span>
+                </label>
+              </div>
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio3" id="exampleRadios2" value="option2">
+                  Sim
+                  <span class="circle">
                     <span class="check"></span>
-                </span>
-            </label>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-       </div>
-      </div>
 
-    </div>
-  </form>
-</div>
-<br><br>
+        <div class="card">
+          <div class="form-group col-md-12">
+            <h4>10. Você já foi diagnosticado com COVID-19?*</h4>
+            <div class="form-check form-check-inline">
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio4" id="exampleRadios1" value="option1">
+                  Não
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio4" id="exampleRadios2" value="option2">
+                  Sim
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><br>
+      <button type="submit" class="btn btn-primary">Enviar Pesquisa <i class="material-icons">send</i></button>
+    </form>
+  </div>
+  <br><br>
 </body>
+
 </html>

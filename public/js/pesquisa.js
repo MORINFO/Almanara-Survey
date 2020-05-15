@@ -13,7 +13,6 @@ async function carregarFuncionario() {
     })
     .catch(function (err) {
       console.log(err.response.status)
-      limparCampos()
       Swal.fire({
         allowOutsideClick: false,
         position: 'center',
@@ -26,7 +25,7 @@ async function carregarFuncionario() {
 
         if (result.dismiss === Swal.DismissReason.timer) {
           document.getElementById('FormPesquisa').reset()
-
+          limparCampos()
         }
       })
 
@@ -66,5 +65,5 @@ function limparCampos(){
   document.getElementById('temperatura').disabled = true
   document.getElementById('gerente').disabled = true
   document.getElementById('FormPesquisa').reset()
-  
+
 }

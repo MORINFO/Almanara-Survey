@@ -15,7 +15,7 @@ async function carregarFuncionario() {
       console.log(err.response.status)
       window.setTimeout(function () {
         document.getElementById('matricula').focus();
-      }, 1800);
+      }, 2000);
       Swal.fire({
         allowOutsideClick: false,
         position: 'center',

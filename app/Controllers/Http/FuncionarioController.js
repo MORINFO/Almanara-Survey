@@ -25,9 +25,10 @@ class FuncionarioController {
     const data = await Database.select('Codigo', 'Nome', 'Email','EmailAlternativo')
     .from('funcionarios001')
     .where('referencia', '=', '202002')
-    .andWhere('CodCargo', '=', 2,3)
+    .andWhere('CodFilial', '=', params.filial)
     .whereIn('CodCargo',[2,3])
 
+    console.log(params.filial)
     return data[0]
   }
 

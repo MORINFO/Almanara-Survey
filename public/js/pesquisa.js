@@ -33,7 +33,6 @@ async function carregarFuncionario() {
     })
 
     if(CodFilial){
-      console.log('ok')
       await axios.get('/gerente/' + CodFilial)
       .then(function (response) {
         document.getElementById('gerente').value = response.data.Nome

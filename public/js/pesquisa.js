@@ -1,65 +1,40 @@
-async function carregarFilial() {
-  var dados
-  await axios.get('/filial')
-    .then(function (response) {
-      dados = response.data
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-  for (var i = 0; i < dados.length; i++) {
-    var selectSetor = document.getElementById("selectFilial")
-    var option = document.createElement("option")
-    option.text = dados[i].Codigo + ' - ' + dados[i].Nome
-    option.value = dados[i].Codigo
-    selectSetor.add(option)
-  }
 
-}
-carregarFilial()
-
-async function carregarGerente() {
-  var dados
-  await axios.get('/gerente')
-    .then(function (response) {
-      dados = response.data
-    })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-  for (var i = 0; i < dados.length; i++) {
-    var selectSetor = document.getElementById("selectGerente")
-    var option = document.createElement("option")
-    option.text = dados[i].Nome
-    option.value = dados[i].Codigo
-    selectSetor.add(option)
-  }
-
-}
-carregarGerente()
 
 async function carregarFuncionario() {
-  var dados
-  await axios.get('/funcionario')
+  let CodFilial = ''
+
+  await axios.get('/funcionario/' + document.getElementById('matricula').value)
     .then(function (response) {
-      dados = response.data
+      CodFilial = response.data.CodFilial
+      document.getElementById('nome').value = response.data.NomeFuncionario
+      document.getElementById('filial').value = response.data.NomeFilial
+      document.getElementById('responsavel').disabled = false
     })
-    .catch(function (erro) {
-      console.log(erro)
-    })
-  for (var i = 0; i < dados.length; i++) {
-    var selectSetor = document.getElementById("selectFuncionario")
-    var option = document.createElement("option")
-    option.text = dados[i].Nome
-    option.value = dados[i].Codigo
-    selectSetor.add(option)
-  }
+    .catch(function (err) {
+      console.log(err.response.status)
+      alert('Funcionário não encontrado "!')
+      document.getElementById('nome').value = ''
+      document.getElementById('filial').value = ''
+      document.getElementById('gerente').value = ''
+      CodFilial == undefined
+      document.getElementById('matricula').focus()
 
+    })
+
+    if(CodFilial){
+      console.log('ok')
+      await axios.get('/gerente/' + CodFilial)
+      .then(function (response) {
+        document.getElementById('gerente').value = response.data.Nome
+      })
+    }
+
+    
 }
-carregarFuncionario()
 
-async function enviaPesquisa(){
-  
+
+async function enviaPesquisa() {
+
   Swal.fire({
     allowOutsideClick: false,
     position: 'center',

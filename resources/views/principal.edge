@@ -14,34 +14,36 @@
   <br><br>
   <div class="card container card-principal ">
     <br>
-    <form class="" onsubmit="enviaPesquisa()">
+    <form id="FormPesquisa" onsubmit="enviaPesquisa()">
+      <fieldset id="campos">
       <div class="form-row ">
 
         <div class="form-group col-md-12">
-          <h4> 1 : Informe a Unidade/Filial :</h4>
-          <select id="selectFilial" class="form-control select-custom">
-            <option>...</option>
-          </select>
+          <h4>1. Código da matrícula:*</h4>
+          <input onblur="carregarFuncionario()" type="text" class="form-control text-center input-responsavel " id="matricula"required>
         </div>
 
         <div class="form-group col-md-12">
-          <h4> 2 : Selecione o Gerente :</h4>
-          <select id="selectGerente" class="form-control select-custom" required>
-            <option>...</option>
-          </select>
+          <h4>2. Nome do Colaborador:*</h4>
+          <input type="text" class="form-control text-center input-responsavel " id="nome"required disabled>
+        </div>
+
+
+        <div class="form-group col-md-12">
+          <h4>3. Unidade/Filial :</h4>
+          <input type="text" class="form-control text-center input-responsavel " id="filial"required disabled>
+        </div>
+
+        <div class="form-group col-md-12">
+          <h4>4. Gerente Responsável :</h4>
+          <input type="text" class="form-control text-center input-responsavel " id="gerente"required disabled>
         </div>
 
         <div class="form-group col-md-12 div-responsavel ">
-          <h4> 3 : Responsável pela coleta de dados:*</h4>
-          <input type="text" class="form-control text-center input-responsavel " id="responsavel"required>
+          <h4>5. Responsável pela coleta de dados:*</h4>
+          <input type="text" class="form-control text-center input-responsavel " id="responsavel"required disabled>
         </div>
 
-        <div class="form-group col-md-12">
-          <h4>5. Nome do Colaborador:*</h4>
-          <select id="selectFuncionario" class="form-control   select-custom"required>
-            <option>...</option>
-          </select>
-        </div>
 
           <div class="form-group  col-md-5 div-temp">
             <h4>6. Temperatura Corporal:*</h4>
@@ -172,6 +174,7 @@
 
       </div><br>
       <button type="submit" onclick="" class="btn btn-primary col-sm-12">Enviar Pesquisa <i class="material-icons">send</i></button>
+    </fieldset>
     </form>
   </div>
   <br><br>
@@ -180,6 +183,8 @@
 </body>
 
 </html>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
+</script><script src="../js/pesquisa.js" type="text/javascript"></script>
+

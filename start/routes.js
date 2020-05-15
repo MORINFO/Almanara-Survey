@@ -10,7 +10,8 @@ Route.get('/filial','FilialController.index')
 
 
 Route.get('/funcionario','FuncionarioController.funcionario')
-Route.get('/gerente','FuncionarioController.gerente')
+Route.get('/funcionario/:id','FuncionarioController.funcionarioMatricula')
+Route.get('/gerente/:filial','FuncionarioController.gerente')
 
 
 // ROTA CORINGA PARA MOSTRAR CASO NAO ENCONTRE AS DEMAIS

@@ -66,5 +66,5 @@ function limparCampos(){
   document.getElementById('temperatura').disabled = true
   document.getElementById('gerente').disabled = true
   document.getElementById('FormPesquisa').reset()
-  CodFilial == undefined
+  
 }

@@ -4,6 +4,7 @@ const Route = use('Route')
 
 // ROTAS PARA AS VIEWS
 Route.on('/').render('principal')
+Route.on('/Survey').render('Survey')
 
 // rotas para as API
 Route.get('/filial','FilialController.index')

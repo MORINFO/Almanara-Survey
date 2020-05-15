@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Principal</title>
+</head>
+
+<body>
+  @include('nav/nav')
+
+  <br><br>
+  <div class="card container card-principal ">
+    <br>
+    <form id="FormPesquisa" onsubmit="enviaPesquisa()">
+      <fieldset id="campos">
+      <div class="form-row ">
+
+        <div class="form-group col-md-12" id="divMatricula">
+          <h4>1. Código da matrícula:*</h4>
+          <input onblur="carregarFuncionario()" type="text" class="form-control text-center input-responsavel " id="matricula"required>
+        </div>
+
+        <div class="form-group col-md-12">
+          <h4>2. Nome do Colaborador:*</h4>
+          <input type="text" class="form-control text-center input-responsavel " id="nome"required disabled>
+        </div>
+
+
+        <div class="form-group col-md-12">
+          <h4>3. Unidade/Filial :</h4>
+          <input type="text" class="form-control text-center input-responsavel " id="filial"required disabled>
+        </div>
+
+        <div class="form-group col-md-12">
+          <h4>4. Gerente Responsável :</h4>
+          <input type="text" class="form-control text-center input-responsavel " id="gerente"required disabled>
+        </div>
+
+        <div class="form-group col-md-12 div-responsavel ">
+          <h4>5. Responsável pela coleta de dados:*</h4>
+          <input type="text" class="form-control text-center input-responsavel " id="responsavel"required disabled>
+        </div>
+
+
+          <div class="form-group  col-md-5 div-temp">
+            <h4>6. Temperatura Corporal:*</h4>
+            <input type="number" class="form-control text-center input-temp" step="0.1" max="42.00" min="35.00" id="temperatura"required disabled>
+          </div>
+
+        <div class="card card-quests">
+          <div class="form-group col-md-12">
+            <h4>7. Você está com algum sintoma de gripe ou resfriado (tosse, coriza,
+              espirros, etc.) ?*</h4>
+            <div class="form-check form-check-inline">
+              <div class="form-check form-check-radio col float-sm-left">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio1" id="exampleRadios1" value="option1"required >
+                  Não
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio1" id="exampleRadios2" value="option2">
+                  Sim
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-quests">
+          <div class="form-group col-md-12">
+            <h4>8. Na última semana você apresentou febre (acima de 37,8°C) ou
+              sintomas de gripe associados com dificuldade para respirar?*</h4>
+            <div class="form-check form-check-inline">
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios1" value="option1"required>
+                  Não
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios2" value="option2">
+                  Sim
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-quests">
+          <div class="form-group col-md-12">
+            <h4>9. Na última semana, você esteve em contato com algum caso confirmado de COVID-19?*</h4>
+            <div class="form-check form-check-inline">
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio3" id="exampleRadios1" value="option1"required>
+                  Não
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio3" id="exampleRadios2" value="option2">
+                  Sim
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-quests">
+          <div class="form-group col-md-12">
+            <h4>10. Você já foi diagnosticado com COVID-19?*</h4>
+            <div class="form-check form-check-inline">
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio4" id="exampleRadios1" value="option1"required>
+                  Não
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+              <div class="form-check form-check-radio col">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="radio4" id="exampleRadios2" value="option2">
+                  Sim
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-quests">
+          <div class="form-group col-md-12">
+            <h4 class="text-center">TERMO DE RESPONSABILIDADE</h4>
+            <div class="form-check">
+              <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox"required>
+                  Declaro que as informações acima prestadas são verdadeiras, e
+                  assumo a inteira responsabilidade pelas mesmas.*
+                  <span class="form-check-sign">
+                      <span class="check"></span>
+                  </span>
+              </label>
+          </div>
+          </div>
+        </div>
+
+      </div><br>
+      <button type="submit" onclick="" class="btn btn-primary col-sm-12">Enviar Pesquisa <i class="material-icons">send</i></button>
+    </fieldset>
+    </form>
+  </div>
+  <br><br>
+
+
+</body>
+
+</html>
+
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+</script><script src="../js/pesquisa.js" type="text/javascript"></script>
+

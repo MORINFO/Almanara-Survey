@@ -34,12 +34,12 @@ async function carregarFuncionario() {
 
     })
 
-    if(CodFilial){
-      await axios.get('/gerente/' + CodFilial)
+  if (CodFilial) {
+    await axios.get('/gerente/' + CodFilial)
       .then(function (response) {
         document.getElementById('gerente').value = response.data.Nome
       })
-    }
+  }
 }
 
 
@@ -60,7 +60,7 @@ async function enviaPesquisa() {
     }
   })
 }
-function limparCampos(){
+function limparCampos() {
   document.getElementById('nome').value = ''
   document.getElementById('filial').value = ''
   document.getElementById('gerente').value = ''

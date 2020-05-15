@@ -23,6 +23,7 @@ async function carregarFuncionario() {
       }).then((result) => {
 
         if (result.dismiss === Swal.DismissReason.timer) {
+          document.getElementById('FormPesquisa').reset()
           limparCampos()
         }
       })

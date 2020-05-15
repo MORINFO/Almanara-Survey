@@ -1,6 +1,5 @@
-
-
 async function carregarFuncionario() {
+  event.preventDefault()
   let CodFilial = ''
 
   await axios.get('/funcionario/' + document.getElementById('matricula').value)
@@ -9,15 +8,24 @@ async function carregarFuncionario() {
       document.getElementById('nome').value = response.data.NomeFuncionario
       document.getElementById('filial').value = response.data.NomeFilial
       document.getElementById('responsavel').disabled = false
+      document.getElementById('temperatura').disabled = false
     })
     .catch(function (err) {
       console.log(err.response.status)
-      alert('Funcionário não encontrado "!')
-      document.getElementById('nome').value = ''
-      document.getElementById('filial').value = ''
-      document.getElementById('gerente').value = ''
-      CodFilial == undefined
-      document.getElementById('matricula').focus()
+      Swal.fire({
+        allowOutsideClick: false,
+        position: 'center',
+        icon: 'error',
+        title: 'Funcionário não localizado !',
+        showConfirmButton: false,
+        timer: 1500
+
+      }).then((result) => {
+
+        if (result.dismiss === Swal.DismissReason.timer) {
+          limparCampos()
+        }
+      })
 
     })
 
@@ -28,13 +36,11 @@ async function carregarFuncionario() {
         document.getElementById('gerente').value = response.data.Nome
       })
     }
-
-    
 }
 
 
 async function enviaPesquisa() {
-
+  event.preventDefault()
   Swal.fire({
     allowOutsideClick: false,
     position: 'center',
@@ -49,4 +55,13 @@ async function enviaPesquisa() {
       location.reload()
     }
   })
+}
+function limparCampos(){
+  document.getElementById('nome').value = ''
+  document.getElementById('filial').value = ''
+  document.getElementById('gerente').value = ''
+  document.getElementById('responsavel').disabled = true
+  document.getElementById('temperatura').disabled = true
+  document.getElementById('FormPesquisa').reset()
+  CodFilial == undefined
 }

@@ -47,6 +47,10 @@ async function carregarFuncionario() {
 
 async function enviaPesquisa() {
   event.preventDefault()
+
+  let campos = document.getElementById('campos')
+  campos.disabled = true
+
   let enviaEmail = 'N'
 
   let sintoma = 'Sim'
@@ -122,16 +126,14 @@ async function enviaPesquisa() {
 
     })
     .catch(function (erro) {
-
+      campos.disabled = false
     })
-
-
-
 
 }
 function limparCampos() {
 
   document.getElementById('FormPesquisa').reset()
   sessionStorage.clear()
+  campos.disabled = false
 
 }

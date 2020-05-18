@@ -101,6 +101,7 @@ class FuncionarioController {
         }, (message) => {
           message.from('morinfo@morinfo.com.br')
             .to('alex@morinfo.com.br')
+            .cc('nicolas@morinfo.com.br')
             .subject('Notificação de Possível Covid')
         })
       }

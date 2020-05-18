@@ -57,7 +57,7 @@ class FuncionarioController {
   async gravaPesquisa({ request, response, params }) {
 
     const data = await request.all()
-    var now = new Date
+    var now = new Date("2015-12-19T10:30:00-03:00")
     console.log(now)
 
     //const pesquisa = await Funcionario.create(data)

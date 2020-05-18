@@ -54,17 +54,17 @@ async function enviaPesquisa() {
   let contatoParente = 'Sim'
   let historicoCovid = 'Sim'
 
-  if (document.getElementById('sintoma1').checked == false) {
+  if (document.getElementById('sintoma1').checked == true) {
     sintoma = 'Não'
   }
-  if (document.getElementById('febreGripe1').checked == false) {
-    sintoma = 'Não'
+  if (document.getElementById('febreGripe1').checked == true) {
+    febreGripe = 'Não'
   }
-  if (document.getElementById('contatoParente1').checked == false) {
-    sintoma = 'Não'
+  if (document.getElementById('contatoParente1').checked == true) {
+    contatoParente = 'Não'
   }
-  if (document.getElementById('historicoCovid1').checked == false) {
-    sintoma = 'Não'
+  if (document.getElementById('historicoCovid1').checked == true) {
+    historicoCovid = 'Não'
   }
 
 

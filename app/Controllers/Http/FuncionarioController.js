@@ -100,7 +100,7 @@ class FuncionarioController {
           Data:now
         }, (message) => {
           message.from('morinfo@morinfo.com.br')
-            .to('nicolas@morinfo.com.br')
+            .to('alex@morinfo.com.br')
             .subject('Notificação de Possível Covid')
         })
       }

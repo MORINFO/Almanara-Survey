@@ -98,6 +98,9 @@ select {
   border-radius: 0.25rem;
   height: calc(2.25rem + 2px);
 }
+.responsabilidade{
+  color: red;
+}
 
 
 

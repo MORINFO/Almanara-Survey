@@ -62,7 +62,6 @@ class FuncionarioController {
 
     //const pesquisa = await Funcionario.create(data)
 
-
     const { CodFilial, Filial, NomeFuncionario, Matricula, Responsavel, Gerente, Temperatura,
       Sintomas, FebreGripe, ContatoParente, HistoricoCovid, enviaEmail } = await request.all()
 

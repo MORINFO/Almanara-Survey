@@ -49,22 +49,22 @@ async function enviaPesquisa() {
   event.preventDefault()
   let enviaEmail = 'N'
 
-  let sintoma = 'S'
-  let febreGripe = 'S'
-  let contatoParente = 'S'
-  let historicoCovid = 'S'
+  let sintoma = 'Sim'
+  let febreGripe = 'Sim'
+  let contatoParente = 'Sim'
+  let historicoCovid = 'Sim'
 
   if (document.getElementById('sintoma1').checked == false) {
-    sintoma = 'N'
+    sintoma = 'Não'
   }
   if (document.getElementById('febreGripe1').checked == false) {
-    sintoma = 'N'
+    sintoma = 'Não'
   }
   if (document.getElementById('contatoParente1').checked == false) {
-    sintoma = 'N'
+    sintoma = 'Não'
   }
   if (document.getElementById('historicoCovid1').checked == false) {
-    sintoma = 'N'
+    sintoma = 'Não'
   }
 
 
@@ -81,7 +81,7 @@ async function enviaPesquisa() {
     enviaEmail = 'S'
   }
 
-  
+
   // document.getElementById('').checked == false ||
   // document.getElementById('').checked == false ||
   // document.getElementById('').checked == false) {

@@ -99,9 +99,9 @@ class FuncionarioController {
           Data:now
         }, (message) => {
           message.from('morinfo@morinfo.com.br')
-            .to('alex@morinfo.com.br')
-            .cc('nicolas@morinfo.com.br')
-            .subject('Notificação de Possível Covid')
+            .to('nicolas@morinfo.com.br')
+            //.cc('alex@morinfo.com.br')
+            .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial  )
         })
       }
       catch{

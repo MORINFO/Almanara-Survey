@@ -11,8 +11,8 @@ const providers = [
   '@adonisjs/framework/providers/ViewProvider',
   '@adonisjs/cors/providers/CorsProvider'
 
-  
-  
+
+
 ]
 
 const aceProviders = [

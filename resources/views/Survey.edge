@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Survey Almanara</title>
 </head>
 
@@ -25,9 +24,8 @@
 
         <div class="form-group col-md-12">
           <h4>2. Nome do Colaborador:*</h4>
-          <input type="text" class="form-control text-center input-responsavel " id="nome"required disabled>
+          <input type="text" class="form-control text-center input-responsavel " id="nomeFuncionario"required disabled>
         </div>
-
 
         <div class="form-group col-md-12">
           <h4>3. Unidade/Filial :</h4>
@@ -44,7 +42,6 @@
           <input type="text" class="form-control text-center input-responsavel " id="responsavel"required disabled>
         </div>
 
-
           <div class="form-group  col-md-5 div-temp">
             <h4>6. Temperatura Corporal:*</h4>
             <input type="number" class="form-control text-center input-temp" step="0.1" min="35.00" max="42.00" id="temperatura"required disabled>
@@ -57,7 +54,7 @@
             <div class="form-check form-check-inline">
               <div class="form-check form-check-radio col float-sm-left">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio1" id="exampleRadios1" value="option1"required >
+                  <input class="form-check-input" type="radio" name="radio1" id="sintoma1" value="option1"required >
                   Não
                   <span class="circle">
                     <span class="check"></span>
@@ -66,7 +63,7 @@
               </div>
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio1" id="exampleRadios2" value="option2">
+                  <input class="form-check-input" type="radio" name="radio1" id="sintoma2" value="option2">
                   Sim
                   <span class="circle">
                     <span class="check"></span>
@@ -84,7 +81,7 @@
             <div class="form-check form-check-inline">
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios1" value="option1"required>
+                  <input class="form-check-input" type="radio" name="radio2" id="febreGripe1" value="option1"required>
                   Não
                   <span class="circle">
                     <span class="check"></span>
@@ -93,7 +90,7 @@
               </div>
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio2" id="exampleRadios2" value="option2">
+                  <input class="form-check-input" type="radio" name="radio2" id="febreGripe2" value="option2">
                   Sim
                   <span class="circle">
                     <span class="check"></span>
@@ -110,7 +107,7 @@
             <div class="form-check form-check-inline">
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio3" id="exampleRadios1" value="option1"required>
+                  <input class="form-check-input" type="radio" name="radio3" id="contatoParente1" value="option1"required>
                   Não
                   <span class="circle">
                     <span class="check"></span>
@@ -119,7 +116,7 @@
               </div>
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio3" id="exampleRadios2" value="option2">
+                  <input class="form-check-input" type="radio" name="radio3" id="contatoParente2" value="option2">
                   Sim
                   <span class="circle">
                     <span class="check"></span>
@@ -136,7 +133,7 @@
             <div class="form-check form-check-inline">
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio4" id="exampleRadios1" value="option1"required>
+                  <input class="form-check-input" type="radio" name="radio4" id="historicoCovid1" value="option1"required>
                   Não
                   <span class="circle">
                     <span class="check"></span>
@@ -145,7 +142,7 @@
               </div>
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio4" id="exampleRadios2" value="option2">
+                  <input class="form-check-input" type="radio" name="radio4" id="historicoCovid2" value="option2">
                   Sim
                   <span class="circle">
                     <span class="check"></span>
@@ -173,15 +170,13 @@
         </div>
 
       </div><br>
-      <button type="submit" onclick="" class="btn btn-primary col-sm-12">Enviar Pesquisa <i class="material-icons">send</i></button>
+      <button type="submit" class="btn btn-primary col-sm-12">Enviar Pesquisa <i class="material-icons">send</i></button>
     </fieldset>
     </form>
   </div>
   <br><br>
 
-
 </body>
-
 </html>
 
 <!-- Optional: include a polyfill for ES6 Promises for IE11 -->

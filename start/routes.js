@@ -8,11 +8,10 @@ Route.on('/Survey').render('Survey')
 
 // rotas para as API
 Route.get('/filial','FilialController.index')
-
-
 Route.get('/funcionario','FuncionarioController.funcionario')
 Route.get('/funcionario/:id','FuncionarioController.funcionarioMatricula')
 Route.get('/gerente/:filial','FuncionarioController.gerente')
+Route.post('/gravaPesquisa','FuncionarioController.gravaPesquisa')
 
 
 // ROTA CORINGA PARA MOSTRAR CASO NAO ENCONTRE AS DEMAIS

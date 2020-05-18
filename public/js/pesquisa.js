@@ -1,18 +1,18 @@
 async function carregarFuncionario() {
   event.preventDefault()
-  let CodFilial = ''
+
 
   await axios.get('/funcionario/' + document.getElementById('matricula').value)
     .then(function (response) {
-      CodFilial = response.data.CodFilial
-      document.getElementById('nome').value = response.data.NomeFuncionario
+      sessionStorage.setItem('CodFilial', response.data.CodFilial)
+      document.getElementById('nomeFuncionario').value = response.data.NomeFuncionario
       document.getElementById('filial').value = response.data.NomeFilial
       document.getElementById('responsavel').disabled = false
       document.getElementById('temperatura').disabled = false
       document.getElementById('gerente').disabled = false
     })
     .catch(function (err) {
-      console.log(err.response.status)
+      console.log(err)
       window.setTimeout(function () {
         document.getElementById('matricula').focus();
       }, 2000);
@@ -34,39 +34,104 @@ async function carregarFuncionario() {
 
     })
 
-  if (CodFilial) {
-    await axios.get('/gerente/' + CodFilial)
+  if (sessionStorage.getItem('CodFilial')) {
+    await axios.get('/gerente/' + sessionStorage.getItem('CodFilial'))
       .then(function (response) {
         document.getElementById('gerente').value = response.data.Nome
+      })
+      .catch(function (err) {
+        console.log(err)
       })
   }
 }
 
-
 async function enviaPesquisa() {
   event.preventDefault()
-  Swal.fire({
-    allowOutsideClick: false,
-    position: 'center',
-    icon: 'success',
-    title: 'Pesquisa enviada com sucesso !',
-    showConfirmButton: false,
-    timer: 2500
+  let enviaEmail = 'N'
 
-  }).then((result) => {
+  let sintoma = 'S'
+  let febreGripe = 'S'
+  let contatoParente = 'S'
+  let historicoCovid = 'S'
 
-    if (result.dismiss === Swal.DismissReason.timer) {
-      location.replace('/')
-    }
-  })
+  if (document.getElementById('sintoma1').checked == false) {
+    sintoma = 'N'
+  }
+  if (document.getElementById('febreGripe1').checked == false) {
+    sintoma = 'N'
+  }
+  if (document.getElementById('contatoParente1').checked == false) {
+    sintoma = 'N'
+  }
+  if (document.getElementById('historicoCovid1').checked == false) {
+    sintoma = 'N'
+  }
+
+
+  if (document.getElementById('sintoma1').checked == false) {
+    enviaEmail = 'S'
+  }
+  if (document.getElementById('febreGripe1').checked == false) {
+    enviaEmail = 'S'
+  }
+  if (document.getElementById('contatoParente1').checked == false) {
+    enviaEmail = 'S'
+  }
+  if (document.getElementById('historicoCovid1').checked == false) {
+    enviaEmail = 'S'
+  }
+
+  
+  // document.getElementById('').checked == false ||
+  // document.getElementById('').checked == false ||
+  // document.getElementById('').checked == false) {
+  // enviaEmail == 'S'
+
+
+  await axios.post('/gravaPesquisa',
+    {
+      "CodFilial": sessionStorage.getItem('CodFilial'),
+      "Filial": document.getElementById('filial').value,
+      "NomeFuncionario": document.getElementById('nomeFuncionario').value,
+      "Matricula": document.getElementById('matricula').value,
+      "Responsavel": document.getElementById('responsavel').value,
+      "Gerente": document.getElementById('gerente').value,
+      "Temperatura": document.getElementById('temperatura').value,
+      "Sintomas": sintoma,
+      "FebreGripe": febreGripe,
+      "ContatoParente": contatoParente,
+      "HistoricoCovid": historicoCovid,
+      'enviaEmail': enviaEmail
+    })
+    .then(function (response) {
+      Swal.fire({
+        allowOutsideClick: false,
+        position: 'center',
+        icon: 'success',
+        title: 'Pesquisa enviada com sucesso !',
+        showConfirmButton: false,
+        timer: 2500
+
+      }).then((result) => {
+
+        if (result.dismiss === Swal.DismissReason.timer) {
+          limparCampos()
+          location.replace('/')
+        }
+      })
+
+    })
+    .catch(function (erro) {
+
+    })
+
+
+
+
 }
 function limparCampos() {
-  document.getElementById('nome').value = ''
-  document.getElementById('filial').value = ''
-  document.getElementById('gerente').value = ''
-  document.getElementById('responsavel').disabled = true
-  document.getElementById('temperatura').disabled = true
-  document.getElementById('gerente').disabled = true
+
   document.getElementById('FormPesquisa').reset()
+  sessionStorage.clear()
 
 }

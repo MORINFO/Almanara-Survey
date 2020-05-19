@@ -4156,7 +4156,7 @@ tbody.collapse.show {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
- 
+
 }
 
 .navbar>.container,
@@ -13382,7 +13382,7 @@ fieldset[disabled][disabled] .has-rose .form-control,
 
 .bmd-form-group {
   position: relative;
-  padding-top: 27px;
+  padding-top: 0px;
 }
 
 .bmd-form-group:not(.has-success):not(.has-danger) [class^='bmd-label'].bmd-label-floating,

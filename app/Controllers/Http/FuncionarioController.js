@@ -31,7 +31,7 @@ class FuncionarioController {
       .whereIn('CodCargo', [2, 3])
 
     console.log(params.filial)
-    return data[0]
+    return data
   }
 
   async funcionarioMatricula({ request, response, params }) {
@@ -57,9 +57,10 @@ class FuncionarioController {
   async gravaPesquisa({ request, response, params }) {
 
     const data = await request.all()
+    console.log(data)
     var now = new Date()
 
-    const { CodFilial, Filial, NomeFuncionario, Matricula, Responsavel, Gerente, Temperatura,
+    const { CodFilial, Filial, NomeFuncionario, Matricula, Responsavel, Gerentes, Temperatura,
       Sintomas, FebreGripe, ContatoParente, HistoricoCovid, enviaEmail } = await request.all()
 
     const pesquisa = await Database
@@ -70,7 +71,7 @@ class FuncionarioController {
         NomeFuncionario: NomeFuncionario,
         Matricula: Matricula,
         Responsavel: Responsavel,
-        Gerente: Gerente,
+        //Gerente: Gerente,
         Temperatura: Temperatura,
         Sintomas: Sintomas,
         FebreGripe: FebreGripe,
@@ -83,27 +84,38 @@ class FuncionarioController {
 
     if (enviaEmail == 'S') {
 
-      try {
-        await Mail.send('emails.email', {
-          Matricula: Matricula,
-          NomeFuncionario: NomeFuncionario,
-          Temperatura: Temperatura,
-          Responsavel: Responsavel,
-          Sintomas: Sintomas,
-          FebreGripe: FebreGripe,
-          ContatoParente: ContatoParente,
-          HistoricoCovid: HistoricoCovid,
-          Data: now.toLocaleString()
-        }, (message) => {
-          message.from('morinfo@morinfo.com.br')
-            .to('rh@almanara.com.br')
-            //.cc('ronaldo@morinfo.com.br')
-            .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
-        })
+      for(var i = 0; i < Gerentes.length; i++){
+
+        if(!Gerentes[i] == ''){
+          console.log('ok')
+          try {
+            await Mail.send('emails.email', {
+              Matricula: Matricula,
+              NomeFuncionario: NomeFuncionario,
+              Temperatura: Temperatura,
+              Responsavel: Responsavel,
+              Sintomas: Sintomas,
+              FebreGripe: FebreGripe,
+              ContatoParente: ContatoParente,
+              HistoricoCovid: HistoricoCovid,
+              Data: now.toLocaleString()
+            }, (message) => {
+              message.from('morinfo@morinfo.com.br')
+                .to(Gerentes[i])
+                .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
+            })
+          }
+          catch{
+            return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
+          }
+
+        }
+
+
       }
-      catch{
-        return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
-      }
+
+
+
 
     }
 

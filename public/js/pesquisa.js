@@ -16,11 +16,12 @@ async function carregarFuncionario() {
         document.getElementById('filial').value = response.data.NomeFilial
         document.getElementById('responsavel').disabled = false
         document.getElementById('temperatura').disabled = false
-        document.getElementById('gerente').disabled = false
+        //document.getElementById('gerente').disabled = false
       })
       .catch(function (err) {
         console.log(err)
         document.getElementById('FormPesquisa').reset()
+
         window.setTimeout(function () {
           document.getElementById('matricula').focus();
         }, 2000);
@@ -35,6 +36,10 @@ async function carregarFuncionario() {
         }).then((result) => {
 
           if (result.dismiss === Swal.DismissReason.timer) {
+            var elemento = document.getElementById("checkbox");
+            while (elemento.firstChild) {
+              elemento.removeChild(elemento.firstChild);
+            }
             limparCampos()
           }
         })
@@ -42,9 +47,23 @@ async function carregarFuncionario() {
       })
 
     if (sessionStorage.getItem('CodFilial')) {
+      var elemento = document.getElementById("checkbox");
+      while (elemento.firstChild) {
+        elemento.removeChild(elemento.firstChild);
+      }
       await axios.get('/gerente/' + sessionStorage.getItem('CodFilial'))
         .then(function (response) {
-          document.getElementById('gerente').value = response.data.Nome
+
+          for (var i = 0; i < response.data.length; i++) {
+
+            var node = document.createElement('div')
+
+            node.innerHTML = '<div class="form-check customCheck "><label class="form-check-label"><input class="form-check-input checkboxAltera" type="checkbox" value="' +
+              response.data[i].Email + '" >' +
+              response.data[i].Nome + '<span class="form-check-sign"><span class="check"></span></span></label></div>'
+            document.getElementById('checkbox').appendChild(node);
+
+          }
         })
         .catch(function (err) {
           console.log(err)
@@ -57,6 +76,13 @@ async function carregarFuncionario() {
 
 async function enviaPesquisa() {
   event.preventDefault()
+
+  var local = sessionStorage.getItem('emails')
+
+
+
+  var dados = JSON.parse(local)
+  var gerentes = [...dados]
 
   let campos = document.getElementById('campos')
   campos.disabled = true
@@ -105,7 +131,7 @@ async function enviaPesquisa() {
       "NomeFuncionario": document.getElementById('nomeFuncionario').value,
       "Matricula": document.getElementById('matricula').value,
       "Responsavel": document.getElementById('responsavel').value,
-      "Gerente": document.getElementById('gerente').value,
+      "Gerentes": gerentes,
       "Temperatura": document.getElementById('temperatura').value,
       "Sintomas": sintoma,
       "FebreGripe": febreGripe,
@@ -140,6 +166,16 @@ function limparCampos() {
 
   document.getElementById('FormPesquisa').reset()
   sessionStorage.clear()
+  localStorage.clear()
   campos.disabled = false
+
+}
+function mudaCheckbox() {
+  var emails = Array.from(document.querySelectorAll(".checkboxAltera:checked"))
+    .map(function (checkbox) {
+      return checkbox.value
+    })
+
+  sessionStorage.setItem('emails', JSON.stringify(emails))
 
 }

@@ -85,13 +85,6 @@ async function enviaPesquisa() {
     enviaEmail = 'S'
   }
 
-
-  // document.getElementById('').checked == false ||
-  // document.getElementById('').checked == false ||
-  // document.getElementById('').checked == false) {
-  // enviaEmail == 'S'
-
-
   await axios.post('/gravaPesquisa',
     {
       "CodFilial": sessionStorage.getItem('CodFilial'),

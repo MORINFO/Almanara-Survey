@@ -96,7 +96,7 @@ class FuncionarioController {
           Data: now.toLocaleString()
         }, (message) => {
           message.from('morinfo@morinfo.com.br')
-            .to('nicolas@morinfo.com.br')
+            .to('rh@almanara.com.br')
             //.cc('ronaldo@morinfo.com.br')
             .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
         })

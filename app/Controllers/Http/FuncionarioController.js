@@ -58,9 +58,6 @@ class FuncionarioController {
 
     const data = await request.all()
     var now = new Date()
-    console.log(now)
-
-    //const pesquisa = await Funcionario.create(data)
 
     const { CodFilial, Filial, NomeFuncionario, Matricula, Responsavel, Gerente, Temperatura,
       Sintomas, FebreGripe, ContatoParente, HistoricoCovid, enviaEmail } = await request.all()
@@ -84,7 +81,6 @@ class FuncionarioController {
       })
 
 
-    //console.log(enviaEmail)
     if (enviaEmail == 'S') {
 
       try {
@@ -97,7 +93,7 @@ class FuncionarioController {
           FebreGripe: FebreGripe,
           ContatoParente: ContatoParente,
           HistoricoCovid: HistoricoCovid,
-          Data: now
+          Data: now.toLocaleString()
         }, (message) => {
           message.from('morinfo@morinfo.com.br')
             .to('nicolas@morinfo.com.br')

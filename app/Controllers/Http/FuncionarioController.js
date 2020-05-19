@@ -86,6 +86,7 @@ class FuncionarioController {
 
     //console.log(enviaEmail)
     if (enviaEmail == 'S') {
+
       try {
         await Mail.send('emails.email', {
           Matricula: Matricula,
@@ -96,12 +97,12 @@ class FuncionarioController {
           FebreGripe: FebreGripe,
           ContatoParente: ContatoParente,
           HistoricoCovid: HistoricoCovid,
-          Data:now
+          Data: now
         }, (message) => {
           message.from('morinfo@morinfo.com.br')
             .to('nicolas@morinfo.com.br')
-            .cc('ronaldo@morinfo.com.br')
-            .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial  )
+            //.cc('ronaldo@morinfo.com.br')
+            .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
         })
       }
       catch{

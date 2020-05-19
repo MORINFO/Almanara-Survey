@@ -1,0 +1,8 @@
+2020/05/18-19:33:19.173 110c Reusing MANIFEST C:\Users\Mor\Desktop\Almanara-Survey\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2020/05/18-19:33:19.174 110c Recovering log #10
+2020/05/18-19:33:19.174 110c Reusing old log C:\Users\Mor\Desktop\Almanara-Survey\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000010.log 
+2020/05/18-19:33:53.691 2be8 Level-0 table #14: started
+2020/05/18-19:33:53.692 2be8 Level-0 table #14: 0 bytes OK
+2020/05/18-19:33:53.694 2be8 Delete type=0 #10
+2020/05/18-19:33:53.695 2be8 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2020/05/18-19:33:53.695 2be8 Manual compaction at level-1 from (begin) .. (end); will stop at (end)

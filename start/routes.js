@@ -15,4 +15,4 @@ Route.post('/gravaPesquisa','FuncionarioController.gravaPesquisa')
 
 
 // ROTA CORINGA PARA MOSTRAR CASO NAO ENCONTRE AS DEMAIS
-Route.on('*').render('pag/404')
+Route.on('*').render('404')

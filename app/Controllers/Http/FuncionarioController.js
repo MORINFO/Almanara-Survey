@@ -102,7 +102,7 @@ class FuncionarioController {
         })
       }
       catch{
-        return response.send({ mensagem: 'Erro ao enviar o Email ! ' })
+        return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
       }
 
     }

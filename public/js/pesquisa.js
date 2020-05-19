@@ -1,48 +1,58 @@
 async function carregarFuncionario() {
   event.preventDefault()
 
+  if (document.getElementById('matricula').value == '') {
+    document.getElementById('responsavel').disabled = true
+    document.getElementById('temperatura').disabled = true
+    document.getElementById('gerente').disabled = true
+    limparCampos()
+  }
 
-  await axios.get('/funcionario/' + document.getElementById('matricula').value)
-    .then(function (response) {
-      sessionStorage.setItem('CodFilial', response.data.CodFilial)
-      document.getElementById('nomeFuncionario').value = response.data.NomeFuncionario
-      document.getElementById('filial').value = response.data.NomeFilial
-      document.getElementById('responsavel').disabled = false
-      document.getElementById('temperatura').disabled = false
-      document.getElementById('gerente').disabled = false
-    })
-    .catch(function (err) {
-      console.log(err)
-      window.setTimeout(function () {
-        document.getElementById('matricula').focus();
-      }, 2000);
-      Swal.fire({
-        allowOutsideClick: false,
-        position: 'center',
-        icon: 'error',
-        title: 'Funcionário não localizado !',
-        showConfirmButton: false,
-        timer: 1500
-
-      }).then((result) => {
-
-        if (result.dismiss === Swal.DismissReason.timer) {
-          document.getElementById('FormPesquisa').reset()
-          limparCampos()
-        }
-      })
-
-    })
-
-  if (sessionStorage.getItem('CodFilial')) {
-    await axios.get('/gerente/' + sessionStorage.getItem('CodFilial'))
+  if (document.getElementById('matricula').value > 0) {
+    await axios.get('/funcionario/' + document.getElementById('matricula').value)
       .then(function (response) {
-        document.getElementById('gerente').value = response.data.Nome
+        sessionStorage.setItem('CodFilial', response.data.CodFilial)
+        document.getElementById('nomeFuncionario').value = response.data.NomeFuncionario
+        document.getElementById('filial').value = response.data.NomeFilial
+        document.getElementById('responsavel').disabled = false
+        document.getElementById('temperatura').disabled = false
+        document.getElementById('gerente').disabled = false
       })
       .catch(function (err) {
         console.log(err)
+        document.getElementById('FormPesquisa').reset()
+        window.setTimeout(function () {
+          document.getElementById('matricula').focus();
+        }, 2000);
+        Swal.fire({
+          allowOutsideClick: false,
+          position: 'center',
+          icon: 'error',
+          title: 'Funcionário não localizado !',
+          showConfirmButton: false,
+          timer: 1500
+
+        }).then((result) => {
+
+          if (result.dismiss === Swal.DismissReason.timer) {
+            limparCampos()
+          }
+        })
+
       })
+
+    if (sessionStorage.getItem('CodFilial')) {
+      await axios.get('/gerente/' + sessionStorage.getItem('CodFilial'))
+        .then(function (response) {
+          document.getElementById('gerente').value = response.data.Nome
+        })
+        .catch(function (err) {
+          console.log(err)
+        })
+    }
+
   }
+
 }
 
 async function enviaPesquisa() {
@@ -72,7 +82,7 @@ async function enviaPesquisa() {
   }
 
 
-  if(document.getElementById('temperatura').value >= 37.8){
+  if (document.getElementById('temperatura').value >= 37.8) {
     enviaEmail = 'S'
   }
   if (document.getElementById('sintoma1').checked == false) {

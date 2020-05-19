@@ -3,7 +3,7 @@
 const Route = use('Route')
 
 // ROTAS PARA AS VIEWS
-Route.on('/').render('principal')
+Route.on('/').render('Principal')
 Route.on('/Survey').render('Survey')
 
 // rotas para as API

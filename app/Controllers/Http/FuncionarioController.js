@@ -104,13 +104,13 @@ class FuncionarioController {
        }
        catch{
          return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
-       } */
+       }
 
-     }
+     } */
       for (var i = 0; i < Gerentes.length; i++) {
 
         if (!Gerentes[i] == '') {
-
+          console.log('ok')
           try {
             await Mail.send('emails.email', {
               Matricula: Matricula,

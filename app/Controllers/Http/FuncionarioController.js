@@ -85,28 +85,26 @@ class FuncionarioController {
       })
 
     if (enviaEmail == 'S') {
-      /*  try {
-         await Mail.send('emails.email', {
-           Matricula: Matricula,
-           NomeFuncionario: NomeFuncionario,
-           Temperatura: Temperatura,
-           Responsavel: Responsavel,
-           Sintomas: Sintomas,
-           FebreGripe: FebreGripe,
-           ContatoParente: ContatoParente,
-           HistoricoCovid: HistoricoCovid,
-           Data: now.toLocaleString()
-         }, (message) => {
-           message.from('rh@almanara.com.br')
-             .to(Gerentes[i])
-             .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
-         })
-       }
-       catch{
-         return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
-       }
-
-     } */
+      try {
+        await Mail.send('emails.email', {
+          Matricula: Matricula,
+          NomeFuncionario: NomeFuncionario,
+          Temperatura: Temperatura,
+          Responsavel: Responsavel,
+          Sintomas: Sintomas,
+          FebreGripe: FebreGripe,
+          ContatoParente: ContatoParente,
+          HistoricoCovid: HistoricoCovid,
+          Data: now.toLocaleString()
+        }, (message) => {
+          message.from('rh@almanara.com.br')
+            .to(Gerentes[i])
+            .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
+        })
+      }
+      catch{
+        return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
+      }
       for (var i = 0; i < Gerentes.length; i++) {
 
         if (!Gerentes[i] == '') {

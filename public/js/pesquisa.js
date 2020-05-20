@@ -4,7 +4,6 @@ async function carregarFuncionario() {
   if (document.getElementById('matricula').value == '') {
     document.getElementById('responsavel').disabled = true
     document.getElementById('temperatura').disabled = true
-    document.getElementById('gerente').disabled = true
     limparCampos()
   }
 

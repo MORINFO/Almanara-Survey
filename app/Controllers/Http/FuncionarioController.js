@@ -85,7 +85,7 @@ class FuncionarioController {
       })
 
     if (enviaEmail == 'S') {
-      try {
+       try {
         await Mail.send('emails.email', {
           Matricula: Matricula,
           NomeFuncionario: NomeFuncionario,
@@ -97,14 +97,14 @@ class FuncionarioController {
           HistoricoCovid: HistoricoCovid,
           Data: now.toLocaleString()
         }, (message) => {
-          message.from('rh@almanara.com.br')
-            .to(Gerentes[i])
+          message.from('morinfo@morinfo.com.br')
+            .to(`rh@almanara.com.br`)
             .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
         })
       }
       catch{
         return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
-      }
+      } 
       for (var i = 0; i < Gerentes.length; i++) {
 
         if (!Gerentes[i] == '') {

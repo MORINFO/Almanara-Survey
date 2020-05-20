@@ -58,7 +58,7 @@ async function carregarFuncionario() {
 
             var node = document.createElement('div')
 
-            node.innerHTML = '<div class="form-check customCheck "><label class="form-check-label"><input id="check' + [i] + '" class="form-check-input checkboxAltera" type="checkbox" value="' +
+            node.innerHTML = '<div class="form-check  "><label class="form-check-label"><input id="check' + [i] + '" class="form-check-input checkboxAltera" type="checkbox" value="' +
               response.data[i].Email + '" > ' +
               response.data[i].Nome + '<span class="form-check-sign"><span class="check"></span></span></label></div>'
             document.getElementById('checkbox').appendChild(node);
@@ -68,10 +68,11 @@ async function carregarFuncionario() {
               document.getElementById('check' + [i] + '').checked = true
             }
 
-            if (response.data[i].CodFilial == 4) {
+            if (response.data[i].CodFilial == 4 && response.data[i].Turnante == 'S') {
 
               document.getElementById('check' + [i] + '').checked = false
             }
+
             mudaCheckbox()
 
           }

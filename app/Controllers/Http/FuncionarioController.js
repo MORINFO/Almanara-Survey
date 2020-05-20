@@ -24,11 +24,13 @@ class FuncionarioController {
     // PEGAR A REFERENTE DO MES ATUAL
     const referencia = now.getFullYear() + (now.getMonth() < 9 ? '0' : '') + (now.getMonth() + 1)
 
-    const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo','CodFilial')
+    const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo', 'CodFilial','Turnante')
       .from('funcionarios001')
-      .where('referencia', '=', '202002')
-      .whereIn('CodFilial', [params.filial, 4])
+      .where('CodFilial','=', params.filial)
+      .andWhere('referencia', '=', '202002')
       .andWhere('CodCargo', '=', 3)
+      .orWhere('Turnante', '=', 'S')
+      .orderBy('Nome')
 
     return data
   }
@@ -36,6 +38,7 @@ class FuncionarioController {
   async funcionarioMatricula({ request, response, params }) {
     //funcao que carrega a data atual neste formato : AAAAMM
     var now = new Date
+
     const referencia = now.getFullYear() + (now.getMonth() < 9 ? '0' : '') + (now.getMonth() + 1)
 
     const matricula = await params.id
@@ -53,10 +56,11 @@ class FuncionarioController {
 
     return data[0]
   }
+
   async gravaPesquisa({ request, response, params }) {
 
     const data = await request.all()
-    console.log(data)
+
     var now = new Date()
 
     const { CodFilial, Filial, NomeFuncionario, Matricula, Responsavel, Gerentes, Temperatura,
@@ -80,13 +84,33 @@ class FuncionarioController {
         Data: now
       })
 
-
     if (enviaEmail == 'S') {
+      /*  try {
+         await Mail.send('emails.email', {
+           Matricula: Matricula,
+           NomeFuncionario: NomeFuncionario,
+           Temperatura: Temperatura,
+           Responsavel: Responsavel,
+           Sintomas: Sintomas,
+           FebreGripe: FebreGripe,
+           ContatoParente: ContatoParente,
+           HistoricoCovid: HistoricoCovid,
+           Data: now.toLocaleString()
+         }, (message) => {
+           message.from('rh@almanara.com.br')
+             .to(Gerentes[i])
+             .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
+         })
+       }
+       catch{
+         return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
+       }
 
+     } */
       for (var i = 0; i < Gerentes.length; i++) {
 
         if (!Gerentes[i] == '') {
-          console.log('ok')
+          
           try {
             await Mail.send('emails.email', {
               Matricula: Matricula,
@@ -107,19 +131,11 @@ class FuncionarioController {
           catch{
             return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
           }
-
         }
 
-
       }
-
-
-
-
     }
-
   }
-
 }
 
 module.exports = FuncionarioController

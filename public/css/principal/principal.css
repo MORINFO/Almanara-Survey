@@ -100,7 +100,9 @@ select {
 .responsabilidade{
   color: red;
 }
-
+.customCheck{
+  min-height: 40px
+}
 
 
 

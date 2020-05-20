@@ -24,13 +24,12 @@ class FuncionarioController {
     // PEGAR A REFERENTE DO MES ATUAL
     const referencia = now.getFullYear() + (now.getMonth() < 9 ? '0' : '') + (now.getMonth() + 1)
 
-    const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo')
+    const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo','CodFilial')
       .from('funcionarios001')
       .where('referencia', '=', '202002')
-      .andWhere('CodFilial', '=', params.filial)
-      .whereIn('CodCargo', [2, 3])
+      .whereIn('CodFilial', [params.filial, 4])
+      .andWhere('CodCargo', '=', 3)
 
-    console.log(params.filial)
     return data
   }
 
@@ -84,9 +83,9 @@ class FuncionarioController {
 
     if (enviaEmail == 'S') {
 
-      for(var i = 0; i < Gerentes.length; i++){
+      for (var i = 0; i < Gerentes.length; i++) {
 
-        if(!Gerentes[i] == ''){
+        if (!Gerentes[i] == '') {
           console.log('ok')
           try {
             await Mail.send('emails.email', {

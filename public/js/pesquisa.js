@@ -58,10 +58,21 @@ async function carregarFuncionario() {
 
             var node = document.createElement('div')
 
-            node.innerHTML = '<div class="form-check customCheck "><label class="form-check-label"><input class="form-check-input checkboxAltera" type="checkbox" value="' +
-              response.data[i].Email + '" >' +
+            node.innerHTML = '<div class="form-check customCheck "><label class="form-check-label"><input id="check' + [i] + '" class="form-check-input checkboxAltera" type="checkbox" value="' +
+              response.data[i].Email + '" > ' +
               response.data[i].Nome + '<span class="form-check-sign"><span class="check"></span></span></label></div>'
             document.getElementById('checkbox').appendChild(node);
+
+            if (response.data[i].CodFilial == sessionStorage.getItem('CodFilial')) {
+
+              document.getElementById('check' + [i] + '').checked = true
+            }
+
+            if (response.data[i].CodFilial == 4) {
+
+              document.getElementById('check' + [i] + '').checked = false
+            }
+            mudaCheckbox()
 
           }
         })

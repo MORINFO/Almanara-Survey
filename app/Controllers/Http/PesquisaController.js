@@ -135,15 +135,13 @@ class PesquisaController {
   }
 
   async Pesquisa({ request, response, params }) {
-    try {
 
-      const data = await Pesquisa.all()
+    const data = await Database.select('Filial')
+      .from('pesquisas')
+      .count({Total:'CodFilial'})
+      .groupBy('CodFilial')
 
       return data
-
-    } catch{
-      return response.send({ mensagem: 'Pesquisa não Localizada !' })
-    }
 
   }
   async PesquisaId({ request, response, params }) {

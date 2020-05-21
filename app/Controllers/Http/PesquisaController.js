@@ -14,7 +14,7 @@ class PesquisaController {
 
     const data = await Database.select('Codigo', 'Nome', 'Referencia')
       .from('funcionarios001')
-      .where('referencia', '=', '202002')
+      .where('referencia', '=', '202005')
 
     return data
   }
@@ -28,7 +28,7 @@ class PesquisaController {
     const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo', 'CodFilial', 'Turnante')
       .from('funcionarios001')
       .where('CodFilial', '=', params.filial)
-      .andWhere('referencia', '=', '202002')
+      .andWhere('referencia', '=', '202005')
       .andWhere('CodCargo', '=', 3)
       .orWhere('Turnante', '=', 'S')
       .orderBy('Nome')
@@ -48,7 +48,7 @@ class PesquisaController {
       .select('func.Codigo', 'func.Nome as NomeFuncionario', 'func.Referencia', 'func.CodFilial', 'func.CodCargo', 'fi.Nome as NomeFilial')
       .from('funcionarios001 as func')
       .innerJoin('filiais as fi', 'fi.Codigo', 'func.CodFilial')
-      .where('func.referencia', '=', '202002')
+      .where('func.referencia', '=', '202005')
       .andWhere('func.Codigo', '=', matricula)
 
     if (data == 0) {

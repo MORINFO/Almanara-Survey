@@ -8,12 +8,13 @@ Route.on('/Survey').render('Survey')
 Route.on('/Analise').render('Analise')
 
 // rotas para as API
-Route.get('/filial','FilialController.index')
-Route.get('/funcionario','FuncionarioController.funcionario')
-Route.get('/funcionario/:id','FuncionarioController.funcionarioMatricula')
-Route.get('/gerente/:filial','FuncionarioController.gerente')
-Route.post('/gravaPesquisa','FuncionarioController.gravaPesquisa')
-Route.get('/dadosPesquisa/:id','FuncionarioController.dadosPesquisa')
+Route.get('/filial','PesquisaController.index')
+Route.get('/funcionario','PesquisaController.funcionario')
+Route.get('/funcionario/:id','PesquisaController.funcionarioMatricula')
+Route.get('/gerente/:filial','PesquisaController.gerente')
+Route.post('/gravaPesquisa','PesquisaController.gravaPesquisa')
+Route.get('/Pesquisa/:id','PesquisaController.PesquisaId')
+Route.get('/Pesquisa','PesquisaController.Pesquisa')
 
 
 // ROTA CORINGA PARA MOSTRAR CASO NAO ENCONTRE AS DEMAIS

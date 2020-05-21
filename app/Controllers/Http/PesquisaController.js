@@ -5,7 +5,7 @@ const Database = use('Database')
 const Env = use('Env')
 const Mail = use('Mail')
 
-class FuncionarioController {
+class PesquisaController {
 
   async funcionario({ request, response, view }) {
     //funcao que carrega a data atual neste formato : AAAAMM
@@ -133,7 +133,20 @@ class FuncionarioController {
       }
     }
   }
-  async dadosPesquisa({ request, response, params }) {
+
+  async Pesquisa({ request, response, params }) {
+    try {
+
+      const data = await Pesquisa.all()
+
+      return data
+
+    } catch{
+      return response.send({ mensagem: 'Pesquisa não Localizada !' })
+    }
+
+  }
+  async PesquisaId({ request, response, params }) {
     try {
 
       const data = await Pesquisa.findByOrFail('id', params.id)
@@ -141,11 +154,11 @@ class FuncionarioController {
       return data
 
     } catch{
-      return response.send({ mensagem: 'Erro' })
+      return response.send({ mensagem: 'Pesquisa não Localizada !' })
     }
 
   }
 
 }
 
-module.exports = FuncionarioController
+module.exports = PesquisaController

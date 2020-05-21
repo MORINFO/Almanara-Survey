@@ -138,6 +138,7 @@ class PesquisaController {
 
     const data = await Database.select('Filial')
       .from('pesquisas')
+      .where('EnviaEmail', 'S')
       .count({Total:'CodFilial'})
       .groupBy('CodFilial')
 

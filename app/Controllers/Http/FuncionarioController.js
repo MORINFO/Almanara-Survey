@@ -1,5 +1,6 @@
 'use strict'
-const Funcionario = use('App/Models/Funcionario')
+
+const Pesquisa = use('App/Models/Pesquisa')
 const Database = use('Database')
 const Env = use('Env')
 const Mail = use('Mail')
@@ -24,9 +25,9 @@ class FuncionarioController {
     // PEGAR A REFERENTE DO MES ATUAL
     const referencia = now.getFullYear() + (now.getMonth() < 9 ? '0' : '') + (now.getMonth() + 1)
 
-    const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo', 'CodFilial','Turnante')
+    const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo', 'CodFilial', 'Turnante')
       .from('funcionarios001')
-      .where('CodFilial','=', params.filial)
+      .where('CodFilial', '=', params.filial)
       .andWhere('referencia', '=', '202002')
       .andWhere('CodCargo', '=', 3)
       .orWhere('Turnante', '=', 'S')
@@ -67,7 +68,7 @@ class FuncionarioController {
       Sintomas, FebreGripe, ContatoParente, HistoricoCovid, enviaEmail } = await request.all()
 
     const pesquisa = await Database
-      .table('pesquisa')
+      .table('pesquisas')
       .insert({
         CodFilial: CodFilial,
         Filial: Filial,
@@ -85,30 +86,29 @@ class FuncionarioController {
       })
 
     if (enviaEmail == 'S') {
-       try {
-        await Mail.send('emails.email', {
-          Matricula: Matricula,
-          NomeFuncionario: NomeFuncionario,
-          Temperatura: Temperatura,
-          Responsavel: Responsavel,
-          Sintomas: Sintomas,
-          FebreGripe: FebreGripe,
-          ContatoParente: ContatoParente,
-          HistoricoCovid: HistoricoCovid,
-          Data: now.toLocaleString()
-        }, (message) => {
-          message.from('morinfo@morinfo.com.br')
-            .to(`rh@almanara.com.br`)
-            .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
-        })
-      }
-      catch{
-        return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
-      } 
+      /*        try {
+              await Mail.send('emails.email', {
+                Matricula: Matricula,
+                NomeFuncionario: NomeFuncionario,
+                Temperatura: Temperatura,
+                Responsavel: Responsavel,
+                Sintomas: Sintomas,
+                FebreGripe: FebreGripe,
+                ContatoParente: ContatoParente,
+                HistoricoCovid: HistoricoCovid,
+                Data: now.toLocaleString()
+              }, (message) => {
+                message.from('morinfo@morinfo.com.br')
+                  .to(`rh@almanara.com.br`)
+                  .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
+              })
+            }
+            catch{
+              return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
+            }  */
       for (var i = 0; i < Gerentes.length; i++) {
 
         if (!Gerentes[i] == '') {
-          console.log('ok')
           try {
             await Mail.send('emails.email', {
               Matricula: Matricula,
@@ -130,10 +130,22 @@ class FuncionarioController {
             return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
           }
         }
-
       }
     }
   }
+  async dadosPesquisa({ request, response, params }) {
+    try {
+
+      const data = await Pesquisa.findByOrFail('id', params.id)
+
+      return data
+
+    } catch{
+      return response.send({ mensagem: 'Erro' })
+    }
+
+  }
+
 }
 
 module.exports = FuncionarioController

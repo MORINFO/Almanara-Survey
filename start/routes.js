@@ -3,11 +3,14 @@
 const Route = use('Route')
 
 // ROTAS PARA AS VIEWS
-Route.on('/').render('principal')
+Route.on('/').render('login')
+Route.on('/principal').render('principal')
 Route.on('/Survey').render('Survey')
 Route.on('/Analise').render('Analise')
 
 // rotas para as API
+Route.post('/login','LoginController.login')
+
 Route.get('/filial','PesquisaController.index')
 Route.get('/funcionario','PesquisaController.funcionario')
 Route.get('/funcionario/:id','PesquisaController.funcionarioMatricula')

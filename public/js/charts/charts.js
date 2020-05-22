@@ -63,7 +63,8 @@ async function BuscarDados() {
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
+              stepSize: 1
             }
           }]
         }
@@ -128,8 +129,10 @@ async function BuscarDados() {
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true
-          }
+            beginAtZero: true,
+            stepSize: 1 ,
+
+         }
         }]
       }
     }

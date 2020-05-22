@@ -86,7 +86,7 @@ class PesquisaController {
       })
 
     if (enviaEmail == 'S') {
-      /*        try {
+              try {
               await Mail.send('emails.emailrh', {
                 Matricula: Matricula,
                 NomeFuncionario: NomeFuncionario,
@@ -105,7 +105,7 @@ class PesquisaController {
             }
             catch{
               return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
-            }  */
+            }  
       for (var i = 0; i < Gerentes.length; i++) {
 
         if (!Gerentes[i] == '') {

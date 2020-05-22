@@ -1,6 +1,7 @@
 'use strict'
 
 const Pesquisa = use('App/Models/Pesquisa')
+//const Filiais = use('App/Models/Filiais')
 const Database = use('Database')
 const Env = use('Env')
 const Mail = use('Mail')
@@ -12,11 +13,16 @@ class PesquisaController {
     var now = new Date
     const referencia = now.getFullYear() + (now.getMonth() < 9 ? '0' : '') + (now.getMonth() + 1)
 
+    console.log(now)
     const data = await Database.select('Codigo', 'Nome', 'Referencia')
       .from('funcionarios001')
       .where('referencia', '=', '202005')
 
-    return data
+    const filiais = await Database.select('Codigo', 'Nome')
+    .from('filiais')
+
+    console.log(filiais)
+    return [data, filiais]
   }
 
   async gerente({ request, response, params }) {
@@ -86,7 +92,7 @@ class PesquisaController {
       })
 
     if (enviaEmail == 'S') {
-              try {
+               try {
               await Mail.send('emails.emailrh', {
                 Matricula: Matricula,
                 NomeFuncionario: NomeFuncionario,
@@ -100,6 +106,7 @@ class PesquisaController {
               }, (message) => {
                 message.from('morinfo@morinfo.com.br')
                   .to(`rh@almanara.com.br`)
+                  .cc(['rh1@almanara.com.br','rh2@almanara.com.br','r6@almanara.com.br','rh4@almanara.com.br'])
                   .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
               })
             }
@@ -130,7 +137,7 @@ class PesquisaController {
             return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
           }
         }
-      }
+      } 
     }
   }
 

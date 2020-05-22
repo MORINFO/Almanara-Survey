@@ -104,5 +104,8 @@ select {
   min-height: 40px
 }
 
-
+.customSelect{
+  padding-left: 10px;
+  min-height: 40px
+}
 

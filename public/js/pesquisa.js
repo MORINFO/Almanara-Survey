@@ -1,4 +1,8 @@
+
+
 async function carregarFuncionario() {
+var index = document.getElementById("selectFiliais").selectedIndex;
+var options = document.getElementById("selectFiliais").options;
   event.preventDefault()
 
   if (document.getElementById('matricula').value == '') {
@@ -12,7 +16,7 @@ async function carregarFuncionario() {
       .then(function (response) {
         sessionStorage.setItem('CodFilial', response.data.CodFilial)
         document.getElementById('nomeFuncionario').value = response.data.NomeFuncionario
-        document.getElementById('filial').value = response.data.NomeFilial
+       // document.getElementById('filial').value = response.data.NomeFilial
         document.getElementById('responsavel').disabled = false
         document.getElementById('temperatura').disabled = false
         //document.getElementById('gerente').disabled = false
@@ -44,53 +48,84 @@ async function carregarFuncionario() {
         })
 
       })
-
-    if (sessionStorage.getItem('CodFilial')) {
-      var elemento = document.getElementById("checkbox");
-      while (elemento.firstChild) {
-        elemento.removeChild(elemento.firstChild);
-      }
-      await axios.get('/gerente/' + sessionStorage.getItem('CodFilial'))
+      await axios.get('/funcionario')
         .then(function (response) {
 
-          for (var i = 0; i < response.data.length; i++) {
+          var elemento = document.getElementById("selectFiliais");
+          while (elemento.firstChild) {
+            elemento.removeChild(elemento.firstChild);
+          }
+          var filiais = response.data[1]
 
-            var node = document.createElement('div')
+          for (var i = 0; i < filiais.length; i++) {
+            var selectFiliais = document.getElementById("selectFiliais")
+            var option = document.createElement("option")
+            option.text = filiais[i].Nome
+            option.value = filiais[i].Codigo
+            selectFiliais.add(option)
 
-            node.innerHTML = '<div class="form-check  "><label class="form-check-label"><input id="check' + [i] + '" class="form-check-input checkboxAltera" type="checkbox" value="' +
-              response.data[i].Email + '" > ' +
-              response.data[i].Nome + '<span class="form-check-sign"><span class="check"></span></span></label></div>'
-            document.getElementById('checkbox').appendChild(node);
 
-            if (response.data[i].CodFilial == sessionStorage.getItem('CodFilial')) {
-
-              document.getElementById('check' + [i] + '').checked = true
+            if(sessionStorage.getItem('CodFilial') == filiais[i].Codigo){
+              options[0].text = filiais[i].Nome
+              options[0].value = filiais[i].Codigo
             }
-
-            if (response.data[i].CodFilial == 4 && response.data[i].Turnante == 'S') {
-
-              document.getElementById('check' + [i] + '').checked = false
-            }
-
-            mudaCheckbox()
-
           }
         })
         .catch(function (err) {
           console.log(err)
         })
+  }
+  mudaGerente()
+}
+async function mudaGerente(){
+  var index = document.getElementById("selectFiliais").selectedIndex;
+  var options = document.getElementById("selectFiliais").options;
+
+  if (options[index].value) {
+    var elemento = document.getElementById("checkbox");
+    while (elemento.firstChild) {
+      elemento.removeChild(elemento.firstChild);
     }
 
+    await axios.get('/gerente/' + options[index].value)
+      .then(function (response) {
+        console.log(options[index].value)
+        for (var i = 0; i < response.data.length; i++) {
+
+          var node = document.createElement('div')
+
+          node.innerHTML = '<div class="form-check  "><label class="form-check-label"><input id="check' + [i] + '" class="form-check-input checkboxAltera" type="checkbox" value="' +
+            response.data[i].Email + '" > ' +
+            response.data[i].Nome + '<span class="form-check-sign"><span class="check"></span></span></label></div>'
+          document.getElementById('checkbox').appendChild(node);
+
+          if (response.data[i].CodFilial == options[index].value) {
+
+            document.getElementById('check' + [i] + '').checked = true
+          }
+
+          if (response.data[i].CodFilial == 4 && response.data[i].Turnante == 'S') {
+
+            document.getElementById('check' + [i] + '').checked = false
+          }
+
+          mudaCheckbox()
+
+        }
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
   }
 
 }
 
 async function enviaPesquisa() {
   event.preventDefault()
+var index = document.getElementById("selectFiliais").selectedIndex;
+var options = document.getElementById("selectFiliais").options;
 
   var local = sessionStorage.getItem('emails')
-
-
 
   var dados = JSON.parse(local)
   var gerentes = [...dados]
@@ -137,8 +172,8 @@ async function enviaPesquisa() {
 
   await axios.post('/gravaPesquisa',
     {
-      "CodFilial": sessionStorage.getItem('CodFilial'),
-      "Filial": document.getElementById('filial').value,
+      "CodFilial": options[index].value,
+      "Filial":options[index].text,
       "NomeFuncionario": document.getElementById('nomeFuncionario').value,
       "Matricula": document.getElementById('matricula').value,
       "Responsavel": document.getElementById('responsavel').value,

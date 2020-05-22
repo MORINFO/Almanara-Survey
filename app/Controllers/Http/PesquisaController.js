@@ -87,7 +87,7 @@ class PesquisaController {
 
     if (enviaEmail == 'S') {
       /*        try {
-              await Mail.send('emails.email', {
+              await Mail.send('emails.emailrh', {
                 Matricula: Matricula,
                 NomeFuncionario: NomeFuncionario,
                 Temperatura: Temperatura,
@@ -136,14 +136,27 @@ class PesquisaController {
 
   async Pesquisa({ request, response, params }) {
 
-    const data = await Database.select('Filial')
+    const data = await Database.select('Filial','Data')
       .from('pesquisas')
       .where('EnviaEmail', 'S')
       .count({Total:'CodFilial'})
       .groupBy('CodFilial')
 
-      return data
+    const teste  = await Database.select('Data')
+    .from('pesquisas')
+    .where('EnviaEmail', 'S')
+    .groupBy('CodFilial')
 
+      return [data,teste]
+
+  }
+
+  async PesquisaData({ request, response, params }) {
+
+    const data = await Database
+    .raw(`select Filial, DATE_FORMAT(Data, "%m%Y") as Data, count(CodFilial) as Total  from pesquisas where EnviaEmail = "S" and DATE_FORMAT(Data, "%m%Y")='${params.data}'  GROUP BY CodFilial`)
+
+    return data[0]
   }
   async PesquisaId({ request, response, params }) {
     try {

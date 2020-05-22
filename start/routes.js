@@ -15,6 +15,7 @@ Route.get('/gerente/:filial','PesquisaController.gerente')
 Route.post('/gravaPesquisa','PesquisaController.gravaPesquisa')
 Route.get('/Pesquisa/:id','PesquisaController.PesquisaId')
 Route.get('/Pesquisa','PesquisaController.Pesquisa')
+Route.get('/PesquisaData/:data','PesquisaController.PesquisaData')
 
 
 // ROTA CORINGA PARA MOSTRAR CASO NAO ENCONTRE AS DEMAIS

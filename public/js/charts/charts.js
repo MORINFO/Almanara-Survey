@@ -75,7 +75,7 @@ async function BuscarDados() {
   if (selectData > 0){
 
     document.getElementById("container").innerHTML = '&nbsp;';
-    document.getElementById("container").innerHTML = '<canvas id="myChart"></canvas>';
+    document.getElementById("container").innerHTML = '<canvas id="myChart"  width="100%" height="100%"></canvas>';
 
     ctx = document.getElementById("myChart").getContext("2d");
     await axios.get('/PesquisaData/' + selectData)

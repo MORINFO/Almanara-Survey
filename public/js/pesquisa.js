@@ -1,8 +1,6 @@
-
-
 async function carregarFuncionario() {
-var index = document.getElementById("selectFiliais").selectedIndex;
-var options = document.getElementById("selectFiliais").options;
+  var index = document.getElementById("selectFiliais").selectedIndex;
+  var options = document.getElementById("selectFiliais").options;
   event.preventDefault()
 
   if (document.getElementById('matricula').value == '') {
@@ -16,7 +14,7 @@ var options = document.getElementById("selectFiliais").options;
       .then(function (response) {
         sessionStorage.setItem('CodFilial', response.data.CodFilial)
         document.getElementById('nomeFuncionario').value = response.data.NomeFuncionario
-       // document.getElementById('filial').value = response.data.NomeFilial
+        // document.getElementById('filial').value = response.data.NomeFilial
         document.getElementById('responsavel').disabled = false
         document.getElementById('temperatura').disabled = false
         //document.getElementById('gerente').disabled = false
@@ -48,36 +46,40 @@ var options = document.getElementById("selectFiliais").options;
         })
 
       })
-      await axios.get('/funcionario')
-        .then(function (response) {
+    await axios.get('/funcionario')
+      .then(function (response) {
 
-          var elemento = document.getElementById("selectFiliais");
-          while (elemento.firstChild) {
-            elemento.removeChild(elemento.firstChild);
+        var elemento = document.getElementById("selectFiliais");
+        while (elemento.firstChild) {
+          elemento.removeChild(elemento.firstChild);
+        }
+        var filiais = response.data[1]
+        // adicionado esta função para eliminar o bug da primeira posição do combo
+        // adiciona 1 elemento vazio na posição 0
+        filiais.unshift('')
+
+        for (var i = 0; i < filiais.length; i++) {
+
+          var selectFiliais = document.getElementById("selectFiliais")
+          var option = document.createElement("option")
+          option.text = filiais[i].Nome
+          option.value = filiais[i].Codigo
+          selectFiliais.add(option)
+
+
+          if (sessionStorage.getItem('CodFilial') == filiais[i].Codigo) {
+            options[0].text = filiais[i].Nome
+            options[0].value = filiais[i].Codigo
           }
-          var filiais = response.data[1]
-
-          for (var i = 0; i < filiais.length; i++) {
-            var selectFiliais = document.getElementById("selectFiliais")
-            var option = document.createElement("option")
-            option.text = filiais[i].Nome
-            option.value = filiais[i].Codigo
-            selectFiliais.add(option)
-
-
-            if(sessionStorage.getItem('CodFilial') == filiais[i].Codigo){
-              options[0].text = filiais[i].Nome
-              options[0].value = filiais[i].Codigo
-            }
-          }
-        })
-        .catch(function (err) {
-          console.log(err)
-        })
+        }
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
   }
   mudaGerente()
 }
-async function mudaGerente(){
+async function mudaGerente() {
   var index = document.getElementById("selectFiliais").selectedIndex;
   var options = document.getElementById("selectFiliais").options;
 
@@ -89,7 +91,7 @@ async function mudaGerente(){
 
     await axios.get('/gerente/' + options[index].value)
       .then(function (response) {
-        console.log(options[index].value)
+
         for (var i = 0; i < response.data.length; i++) {
 
           var node = document.createElement('div')
@@ -122,8 +124,8 @@ async function mudaGerente(){
 
 async function enviaPesquisa() {
   event.preventDefault()
-var index = document.getElementById("selectFiliais").selectedIndex;
-var options = document.getElementById("selectFiliais").options;
+  var index = document.getElementById("selectFiliais").selectedIndex;
+  var options = document.getElementById("selectFiliais").options;
 
   var local = sessionStorage.getItem('emails')
 
@@ -173,7 +175,7 @@ var options = document.getElementById("selectFiliais").options;
   await axios.post('/gravaPesquisa',
     {
       "CodFilial": options[index].value,
-      "Filial":options[index].text,
+      "Filial": options[index].text,
       "NomeFuncionario": document.getElementById('nomeFuncionario').value,
       "Matricula": document.getElementById('matricula').value,
       "Responsavel": document.getElementById('responsavel').value,

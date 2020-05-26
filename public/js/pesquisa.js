@@ -199,7 +199,7 @@ async function enviaPesquisa() {
       }).then((result) => {
 
         if (result.dismiss === Swal.DismissReason.timer) {
-          location.replace('/')
+          location.replace('/principal')
         }
       })
 

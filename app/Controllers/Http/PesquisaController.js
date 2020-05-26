@@ -33,17 +33,17 @@ class PesquisaController {
 
     var cargo = 3
 
-    if(params.filial == 11){
+    if (params.filial == 11) {
       //CAMPINAS
       cargo = 621
     }
 
-    if(params.filial == 16){
+    if (params.filial == 16) {
       //ALPHAVILLE
       cargo = 821
     }
 
-    if(params.filial == 18){
+    if (params.filial == 18) {
       // JANDIRA
       cargo = 701
     }

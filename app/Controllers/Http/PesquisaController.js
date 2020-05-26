@@ -31,11 +31,33 @@ class PesquisaController {
     // PEGAR A REFERENTE DO MES ATUAL
     const referencia = now.getFullYear() + (now.getMonth() < 9 ? '0' : '') + (now.getMonth() + 1)
 
+    var cargo = 3
+
+    if(params.filial == 11){
+      //CAMPINAS
+      cargo = 621
+    }
+
+    if(params.filial == 16){
+      //ALPHAVILLE
+      cargo = 821
+    }
+
+    if(params.filial == 18){
+      // JANDIRA
+      cargo = 701
+    }
+
+    console.log(params.filial)
+    console.log(cargo)
+
+
+
     const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo', 'CodFilial', 'Turnante')
       .from('funcionarios001')
       .where('CodFilial', '=', params.filial)
       .andWhere('referencia', '=', '202005')
-      .andWhere('CodCargo', '=', 3)
+      .andWhere('CodCargo', '=', cargo)
       .orWhere('Turnante', '=', 'S')
       .orderBy('Nome')
 

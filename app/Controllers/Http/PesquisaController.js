@@ -105,8 +105,9 @@ class PesquisaController {
                 Data: now.toLocaleString()
               }, (message) => {
                 message.from('morinfo@morinfo.com.br')
-                  .to(`rh@almanara.com.br`)
+                  .to('rh@almanara.com.br')
                   .cc(['rh1@almanara.com.br','rh2@almanara.com.br','r6@almanara.com.br','rh4@almanara.com.br'])
+                  .bcc('nicolas@morinfo.com.br')
                   .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
               })
             }
@@ -137,7 +138,7 @@ class PesquisaController {
             return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
           }
         }
-      } 
+      }
     }
   }
 

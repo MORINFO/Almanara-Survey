@@ -199,7 +199,6 @@ async function enviaPesquisa() {
       }).then((result) => {
 
         if (result.dismiss === Swal.DismissReason.timer) {
-          limparCampos()
           location.replace('/')
         }
       })

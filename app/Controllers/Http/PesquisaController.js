@@ -19,7 +19,7 @@ class PesquisaController {
       .where('referencia', '=', '202005')
 
     const filiais = await Database.select('Codigo', 'Nome')
-    .from('filiais')
+      .from('filiais')
 
     console.log(filiais)
     return [data, filiais]
@@ -92,28 +92,28 @@ class PesquisaController {
       })
 
     if (enviaEmail == 'S') {
-               try {
-              await Mail.send('emails.emailrh', {
-                Matricula: Matricula,
-                NomeFuncionario: NomeFuncionario,
-                Temperatura: Temperatura,
-                Responsavel: Responsavel,
-                Sintomas: Sintomas,
-                FebreGripe: FebreGripe,
-                ContatoParente: ContatoParente,
-                HistoricoCovid: HistoricoCovid,
-                Data: now.toLocaleString()
-              }, (message) => {
-                message.from('morinfo@morinfo.com.br')
-                  .to('rh@almanara.com.br')
-                  .cc(['rh1@almanara.com.br','rh2@almanara.com.br','r6@almanara.com.br','rh4@almanara.com.br'])
-                  .bcc('nicolas@morinfo.com.br')
-                  .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
-              })
-            }
-            catch{
-              return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
-            }
+      try {
+        await Mail.send('emails.emailrh', {
+          Matricula: Matricula,
+          NomeFuncionario: NomeFuncionario,
+          Temperatura: Temperatura,
+          Responsavel: Responsavel,
+          Sintomas: Sintomas,
+          FebreGripe: FebreGripe,
+          ContatoParente: ContatoParente,
+          HistoricoCovid: HistoricoCovid,
+          Data: now.toLocaleString()
+        }, (message) => {
+          message.from('morinfo@morinfo.com.br')
+            .to('rh@almanara.com.br')
+            .cc(['rh1@almanara.com.br', 'rh2@almanara.com.br', 'r6@almanara.com.br', 'rh4@almanara.com.br'])
+            .bcc('nicolas@morinfo.com.br')
+            .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
+        })
+      }
+      catch{
+        return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
+      }
       for (var i = 0; i < Gerentes.length; i++) {
 
         if (!Gerentes[i] == '') {
@@ -144,25 +144,25 @@ class PesquisaController {
 
   async Pesquisa({ request, response, params }) {
 
-    const data = await Database.select('Filial','Data')
+    const data = await Database.select('Filial', 'Data')
       .from('pesquisas')
       .where('EnviaEmail', 'S')
-      .count({Total:'CodFilial'})
+      .count({ Total: 'CodFilial' })
       .groupBy('CodFilial')
 
-    const teste  = await Database.select('Data')
-    .from('pesquisas')
-    .where('EnviaEmail', 'S')
-    .groupBy('CodFilial')
+    const teste = await Database.select('Data')
+      .from('pesquisas')
+      .where('EnviaEmail', 'S')
+      .groupBy('CodFilial')
 
-      return [data,teste]
+    return [data, teste]
 
   }
 
   async PesquisaData({ request, response, params }) {
 
     const data = await Database
-    .raw(`select Filial, DATE_FORMAT(Data, "%m%Y") as Data, count(CodFilial) as Total  from pesquisas where EnviaEmail = "S" and DATE_FORMAT(Data, "%m%Y")='${params.data}'  GROUP BY CodFilial`)
+      .raw(`select Filial, DATE_FORMAT(Data, "%m%Y") as Data, count(CodFilial) as Total  from pesquisas where EnviaEmail = "S" and DATE_FORMAT(Data, "%m%Y")='${params.data}'  GROUP BY CodFilial`)
 
     return data[0]
   }

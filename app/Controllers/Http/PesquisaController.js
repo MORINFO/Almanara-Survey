@@ -130,7 +130,7 @@ class PesquisaController {
             .to('rh@almanara.com.br')
             .cc(['rh1@almanara.com.br', 'rh2@almanara.com.br', 'r6@almanara.com.br', 'rh4@almanara.com.br'])
             .bcc('nicolas@morinfo.com.br')
-            .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
+            .subject('Notificação de Possível Covid - ' + Filial)
         })
       }
       catch{
@@ -153,7 +153,7 @@ class PesquisaController {
             }, (message) => {
               message.from('morinfo@morinfo.com.br')
                 .to(Gerentes[i])
-                .subject('[ TESTE ] Notificação de Possível Covid - ' + Filial)
+                .subject('Notificação de Possível Covid - ' + Filial)
             })
           }
           catch{

@@ -33,7 +33,7 @@
           <p>*Obs.:Se você estiver em uma unidade diferente, marque em qual está trabalhando.*</p>
           <div class="card">
             <select onchange="mudaGerente()" id="selectFiliais" class="customSelect">
-             
+
             </select>
           </div>
         </div>
@@ -135,13 +135,13 @@
           </div>
         </div>
 
-        <div class="card card-quests">
+        <div class="card card-quests" >
           <div class="form-group col-md-12">
             <h4>10. Você já foi diagnosticado com COVID-19?*</h4>
             <div class="form-check form-check-inline">
               <div class="form-check form-check-radio col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="radio4" id="historicoCovid1" value="option1"required>
+                  <input  class="form-check-input" type="radio" name="radio4" id="historicoCovid1" value="option1"required>
                   Não
                   <span class="circle">
                     <span class="check"></span>
@@ -149,16 +149,21 @@
                 </label>
               </div>
               <div class="form-check form-check-radio col">
-                <label class="form-check-label">
+                <label class="form-check-label"  >
                   <input class="form-check-input" type="radio" name="radio4" id="historicoCovid2" value="option2">
                   Sim
-                  <span class="circle">
+                  <span class="circle" >
                     <span class="check"></span>
                   </span>
                 </label>
               </div>
             </div>
           </div>
+        </div>
+
+        <div id="data" class="form-group  col-md-8 div-temp "style="display:none">
+          <h4>Dia que foi diagnosticado[a] com Covid-19</h4>
+          <input type="date" class="form-control text-center input-temp" id="dataConfirmado"required pattern="[09]{4}[09]{2}[09]{2}">
         </div>
 
         <div class="card card-quests">
@@ -188,8 +193,7 @@
 </html>
 
 <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="../js/pesquisa.js" type="text/javascript"></script>
-

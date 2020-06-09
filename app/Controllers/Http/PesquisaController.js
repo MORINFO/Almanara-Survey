@@ -1,9 +1,7 @@
 'use strict'
 
 const Pesquisa = use('App/Models/Pesquisa')
-//const Filiais = use('App/Models/Filiais')
 const Database = use('Database')
-const Env = use('Env')
 const Mail = use('Mail')
 
 class PesquisaController {
@@ -13,7 +11,6 @@ class PesquisaController {
     var now = new Date
     const referencia = now.getFullYear() + (now.getMonth() < 9 ? '0' : '') + (now.getMonth() + 1)
 
-    console.log(now)
     const data = await Database.select('Codigo', 'Nome', 'Referencia')
       .from('funcionarios001')
       .where('referencia', '=', '202005')
@@ -37,21 +34,14 @@ class PesquisaController {
       //CAMPINAS
       cargo = 621
     }
-
     if (params.filial == 16) {
       //ALPHAVILLE
       cargo = 821
     }
-
     if (params.filial == 18) {
       // JANDIRA
       cargo = 701
     }
-
-    console.log(params.filial)
-    console.log(cargo)
-
-
 
     const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo', 'CodFilial', 'Turnante')
       .from('funcionarios001')
@@ -93,7 +83,7 @@ class PesquisaController {
     var now = new Date()
 
     const { CodFilial, Filial, NomeFuncionario, Matricula, Responsavel, Gerentes, Temperatura,
-      Sintomas, FebreGripe, ContatoParente, HistoricoCovid, enviaEmail } = await request.all()
+      Sintomas, FebreGripe, ContatoParente, HistoricoCovid, enviaEmail,DiaDiagnosticado } = await request.all()
 
     const pesquisa = await Database
       .table('pesquisas')
@@ -103,13 +93,13 @@ class PesquisaController {
         NomeFuncionario: NomeFuncionario,
         Matricula: Matricula,
         Responsavel: Responsavel,
-        //Gerente: Gerente,
         Temperatura: Temperatura,
         Sintomas: Sintomas,
         FebreGripe: FebreGripe,
         ContatoParente: ContatoParente,
         HistoricoCovid: HistoricoCovid,
         enviaEmail: enviaEmail,
+        DiaDiagnosticado:DiaDiagnosticado,
         Data: now
       })
 
@@ -128,7 +118,7 @@ class PesquisaController {
         }, (message) => {
           message.from('morinfo@morinfo.com.br')
             .to('rh@almanara.com.br')
-            .cc(['rh1@almanara.com.br', 'rh2@almanara.com.br', 'r6@almanara.com.br', 'rh4@almanara.com.br'])
+            .cc(['rh1@almanara.com.br', 'rh2@almanara.com.br', 'rh6@almanara.com.br', 'rh4@almanara.com.br'])
             .bcc('nicolas@morinfo.com.br')
             .subject('Notificação de Possível Covid - ' + Filial)
         })

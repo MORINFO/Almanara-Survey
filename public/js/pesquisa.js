@@ -142,6 +142,18 @@ async function enviaPesquisa() {
   let contatoParente = 'Sim'
   let historicoCovid = 'Sim'
 
+
+  let dataSelecionado = moment(document.getElementById('dataConfirmado').value).format('YYYY/MM/DD');
+
+  var today = moment().format('YYYY/MM/DD');
+
+  date1 = new Date(dataSelecionado);
+  date2 = new Date(today);
+
+  var diferenca = (date2 - date1); //diferença em milésimos e positivo
+  var dia = 1000 * 60 * 60 * 24; // milésimos de segundo correspondente a um dia
+  var totalDias = Math.round(diferenca / dia); //valor total de dias arredondado
+
   if (document.getElementById('sintoma1').checked == true) {
     sintoma = 'Não'
   }
@@ -168,10 +180,12 @@ async function enviaPesquisa() {
   if (document.getElementById('contatoParente1').checked == false) {
     enviaEmail = 'S'
   }
-  if (document.getElementById('historicoCovid1').checked == false) {
+
+  if (totalDias < 15) {
     enviaEmail = 'S'
   }
 
+  console.log(enviaEmail)
   await axios.post('/gravaPesquisa',
     {
       "CodFilial": options[index].value,
@@ -185,6 +199,7 @@ async function enviaPesquisa() {
       "FebreGripe": febreGripe,
       "ContatoParente": contatoParente,
       "HistoricoCovid": historicoCovid,
+      "DiaDiagnosticado": document.getElementById('dataConfirmado').value,
       'enviaEmail': enviaEmail
     })
     .then(function (response) {
@@ -226,3 +241,21 @@ function mudaCheckbox() {
   sessionStorage.setItem('emails', JSON.stringify(emails))
 
 }
+
+document.getElementById("historicoCovid1").addEventListener("click", function () {
+  document.getElementById('data').style.display = 'none';
+  document.getElementById('dataConfirmado').value = ''
+  document.getElementById('dataConfirmado').required = false
+});
+
+document.getElementById("historicoCovid2").addEventListener("click", function () {
+  document.getElementById('data').style.display = 'block';
+  document.getElementById('dataConfirmado').required = true
+
+});
+
+//FUNCAO QUE DEIXA A DATA ATE HOJE.
+var dateControl = document.querySelector('input[type="date"]');
+var today = moment().format('YYYY-MM-DD');
+
+dateControl.max = today;

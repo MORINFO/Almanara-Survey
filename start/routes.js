@@ -9,6 +9,7 @@ Route.on('/Survey').render('Survey')
 Route.on('/Analise').render('Analise')
 Route.on('/Relatorio').render('Relatorio')
 
+
 // rotas para as API
 Route.post('/login','LoginController.login')
 

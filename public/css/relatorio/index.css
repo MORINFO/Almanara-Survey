@@ -1,0 +1,33 @@
+.cardCustom {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.cardFiltro {
+
+  margin-bottom: 10px;
+
+}
+
+.select-custom {
+  border-radius: 5px;
+  background: white;
+  width: 100px;
+  text-align: center;
+  padding-left: 5%;
+
+}
+
+.inputCustom {
+  border-radius: 5px;
+}
+
+.btnFiltrar {
+  height: 50px;
+  display: flex;
+  margin-bottom: 0;
+  align-self: center;
+}
+.cardResultado{
+  padding: 15px;
+}

@@ -184,8 +184,6 @@ async function enviaPesquisa() {
   if (totalDias < 15) {
     enviaEmail = 'S'
   }
-
-  console.log(enviaEmail)
   await axios.post('/gravaPesquisa',
     {
       "CodFilial": options[index].value,
@@ -223,6 +221,23 @@ async function enviaPesquisa() {
       campos.disabled = false
     })
 
+  if (enviaEmail == 'S') {
+    Swal.fire({
+      allowOutsideClick: false,
+      position: 'center',
+      icon: 'warning',
+      title: 'Colaborador/Terceiro com possível Covid-19 ! Favor, informar a gerência !',
+      showConfirmButton: false,
+      timer: 10000
+
+    }).then((result) => {
+
+      if (result.dismiss === Swal.DismissReason.timer) {
+        location.replace('/principal')
+      }
+    })
+  }
+
 }
 function limparCampos() {
 
@@ -240,6 +255,29 @@ function mudaCheckbox() {
 
   sessionStorage.setItem('emails', JSON.stringify(emails))
 
+}
+async function verificaFuncionario() {
+
+  document.getElementById('FormPesquisa').reset()
+  if (document.getElementById('checkFuncionario').checked) {
+    document.getElementById('divMatricula').innerHTML = ' <h4>1. CPF:*</h4><input id="matricula"" type="number" class="form-control text-center input-responsavel " id="matricula" required>'
+    document.getElementById('nomeFuncionario').disabled = false
+    document.getElementById('responsavel').disabled = false
+    document.getElementById('temperatura').disabled = false
+    let option = '<option>....</option>'
+    await axios.get('/filiais')
+      .then(function (response) {
+        response.data.map(filial =>
+          option += `<option value="${filial.Codigo}">${filial.Nome}</option>`)
+      })
+    document.getElementById('selectFiliais').innerHTML = option
+
+  } else {
+    document.getElementById('divMatricula').innerHTML = '  <h4>1. Código da matrícula:*</h4><input id="matricula" onblur="carregarFuncionario()" type="number" class="form-control text-center input-responsavel "id="matricula" required>'
+    document.getElementById('nomeFuncionario').disabled = true
+    document.getElementById('responsavel').disabled = true
+    document.getElementById('temperatura').disabled = true
+  }
 }
 
 document.getElementById("historicoCovid1").addEventListener("click", function () {
@@ -259,3 +297,4 @@ var dateControl = document.querySelector('input[type="date"]');
 var today = moment().format('YYYY-MM-DD');
 
 dateControl.max = today;
+

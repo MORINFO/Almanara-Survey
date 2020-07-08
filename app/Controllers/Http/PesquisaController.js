@@ -18,8 +18,14 @@ class PesquisaController {
     const filiais = await Database.select('Codigo', 'Nome')
       .from('filiais')
 
-    console.log(filiais)
     return [data, filiais]
+  }
+  async index({ request, response }) {
+    const filiais = await Database.select('Codigo', 'Nome')
+      .from('filiais')
+
+    return filiais
+
   }
 
   async gerente({ request, response, params }) {
@@ -83,7 +89,7 @@ class PesquisaController {
     var now = new Date()
 
     const { CodFilial, Filial, NomeFuncionario, Matricula, Responsavel, Gerentes, Temperatura,
-      Sintomas, FebreGripe, ContatoParente, HistoricoCovid, enviaEmail,DiaDiagnosticado } = await request.all()
+      Sintomas, FebreGripe, ContatoParente, HistoricoCovid, enviaEmail, DiaDiagnosticado } = await request.all()
 
     const pesquisa = await Database
       .table('pesquisas')
@@ -99,7 +105,7 @@ class PesquisaController {
         ContatoParente: ContatoParente,
         HistoricoCovid: HistoricoCovid,
         enviaEmail: enviaEmail,
-        DiaDiagnosticado:DiaDiagnosticado,
+        DiaDiagnosticado: DiaDiagnosticado,
         Data: now
       })
 

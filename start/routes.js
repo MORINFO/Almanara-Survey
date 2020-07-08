@@ -7,7 +7,7 @@ Route.on('/').render('login')
 Route.on('/principal').render('principal')
 Route.on('/Survey').render('Survey')
 Route.on('/Analise').render('Analise')
-Route.on('/Relatorio').render('Relatorio')
+Route.on('/Relatorios').render('Relatorios')
 
 
 // rotas para as API

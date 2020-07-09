@@ -59,12 +59,12 @@ class RelatorioController {
         .select(Database.raw('DATE_FORMAT(Data, "%H:%i:%s") as Hora'))
         .table('pesquisas')
         .where('Matricula', '=', Matricula)
-        .orderBy('Data')
+        //.orderBy('Data')
 
       return pesquisa
 
     }else if (Matricula && Data > 0 && Filial==0) {
-      console.log('ok3')
+      console.log('ok4')
       const pesquisa = await Database
         .select('*')
         .select(Database.raw('DATE_FORMAT(DiaDiagnosticado, "%d/%m/%Y") as DiaDiagnosticado'))
@@ -78,7 +78,7 @@ class RelatorioController {
       return pesquisa
 
     }else if(Filial && Data == 0 && Matricula == null ){
-      console.log('ok4')
+      console.log('ok5')
       const pesquisa = await Database
       .select('*')
       .select(Database.raw('DATE_FORMAT(DiaDiagnosticado, "%d/%m/%Y") as DiaDiagnosticado'))
@@ -86,11 +86,11 @@ class RelatorioController {
       .select(Database.raw('DATE_FORMAT(Data, "%H:%i:%s") as Hora'))
       .table('pesquisas')
       .where('CodFilial', '=', Filial)
-      .orderBy('Data')
+      //.orderBy('Data')
 
     return pesquisa
     }else if(Filial && Data > 0 && Matricula == null ){
-      console.log('ok5')
+      console.log('ok6')
       const pesquisa = await Database
       .select('*')
       .select(Database.raw('DATE_FORMAT(DiaDiagnosticado, "%d/%m/%Y") as DiaDiagnosticado'))
@@ -103,7 +103,7 @@ class RelatorioController {
 
     return pesquisa
     }else if(Filial && Data == 0 && Matricula  ){
-      console.log('ok6')
+      console.log('ok7')
       const pesquisa = await Database
       .select('*')
       .select(Database.raw('DATE_FORMAT(DiaDiagnosticado, "%d/%m/%Y") as DiaDiagnosticado'))
@@ -116,7 +116,7 @@ class RelatorioController {
 
     return pesquisa
     }else{
-      console.log('ok7')
+      console.log('ok8')
       const pesquisa = await Database
       .select('*')
       .select(Database.raw('DATE_FORMAT(DiaDiagnosticado, "%d/%m/%Y") as DiaDiagnosticado'))

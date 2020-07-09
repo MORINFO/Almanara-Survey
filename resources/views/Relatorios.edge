@@ -25,7 +25,48 @@
     <!-- /.container-->
   </nav>
 
-  <div class=" justify-content-center  cardCustom">
+  <div class=" " >
+    <div class="row login container" id="login">
+       <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+          <div class="card card-login cardCustom">
+             <form id="formLogin" class="form" onsubmit="logar()" method="POST">
+                <div class="card-header card-header-primary text-center">
+                   <br>
+                   <h4 class="card-title">Login</h4>
+                   <div class="social-line">
+                      </a>
+                   </div>
+                </div>
+                <div class="card-body">
+                   <div class="input-group">
+                      <div class="input-group-prepend">
+                         <span class="input-group-text">
+                            <i class="material-icons">face</i>
+                         </span>
+                      </div>
+                      <input id="Usuario" type="text" class="form-control" placeholder="Usuário..." required>
+                   </div>
+                   <div class="input-group">
+                      <div class="input-group-prepend">
+                         <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                      </div>
+                      <input id="Senha" type="password" class="form-control" placeholder="Senha..." required>
+                   </div>
+                   </span>
+                </div>
+                <div class="footer text-center">
+             </form>
+             <button type="submit" class="btn btn-success">Logar <i class="material-icons">input</i>
+             </button>
+          </div>
+          </form>
+       </div>
+    </div>
+ </div>
+
+
+  <div class=" justify-content-center  cardCustom" id="conteudo" >
     <div class="row ">
       <div class="card cardFiltro ">
         <form onsubmit="filtrar()" id="form">

@@ -31,3 +31,10 @@
 .cardResultado{
   padding: 15px;
 }
+.login{
+  margin-top: 200px;
+}
+
+.esconder{
+  display:none;
+}

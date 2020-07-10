@@ -168,7 +168,7 @@ async function enviaPesquisa() {
   }
 
 
-  if (document.getElementById('temperatura').value >= 37.8) {
+  if (document.getElementById('temperatura').value >= 37) {
     enviaEmail = 'S'
   }
   if (document.getElementById('sintoma1').checked == false) {

@@ -136,7 +136,7 @@ class PesquisaController {
 
         if (!Gerentes[i] == '') {
           try {
-            await Mail.send('emails.email', {
+            await Mail.send('emails.email',{
               Matricula: Matricula,
               NomeFuncionario: NomeFuncionario,
               Temperatura: Temperatura,

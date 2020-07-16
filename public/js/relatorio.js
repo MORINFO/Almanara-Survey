@@ -5,8 +5,9 @@ async function filtrar() {
   <th> Você está com algum sintoma de gripe ou resfriado (tosse, coriza, espirros, etc.) ?</th>
   <th>Na última semana você apresentou febre (acima de 37,8°C) ou sintomas de gripe associados com dificuldade para respirar?</th>
   <th>Na última semana, você esteve em contato com algum caso confirmado de COVID-19?</th><th>Você já foi diagnosticado com COVID-19?*</th>
-  <th>Data e Hora da Pesquisa</th></tr>'
-  document.getElementById('tblData').innerHTML = '<h2 class="text-center">Carregando...<h2>`
+  <th>Data e Hora da Pesquisa</th></tr>`
+
+  document.getElementById('tblData').innerHTML = '<h2 class="text-center">Carregando...<h2>'
   await axios.post('/api/relatorio',
     {
       "Matricula": document.getElementById('matricula').value,

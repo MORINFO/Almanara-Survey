@@ -123,16 +123,16 @@ class PesquisaController {
           Data: now.toLocaleString()
         }, (message) => {
           message.from('morinfo@morinfo.com.br')
-            .to('rh@almanara.com.br')
-            .cc(['rh1@almanara.com.br', 'rh2@almanara.com.br', 'rh6@almanara.com.br', 'rh4@almanara.com.br'])
+            .to('nicolas@morinfo.com.br')
+/*             .cc(['rh1@almanara.com.br', 'rh2@almanara.com.br', 'rh6@almanara.com.br', 'rh4@almanara.com.br'])
             .bcc('nicolas@morinfo.com.br')
-            .subject('Notificação de Possível Covid - ' + Filial)
+            .subject('Notificação de Possível Covid - ' + Filial) */
         })
       }
       catch{
         return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
       }
-      for (var i = 0; i < Gerentes.length; i++) {
+/*       for (var i = 0; i < Gerentes.length; i++) {
 
         if (!Gerentes[i] == '') {
           try {
@@ -156,7 +156,7 @@ class PesquisaController {
             return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
           }
         }
-      }
+      } */
     }
   }
 

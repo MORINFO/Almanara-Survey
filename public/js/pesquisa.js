@@ -94,7 +94,7 @@ async function mudaGerente() {
 
         for (var i = 0; i < response.data.length; i++) {
 
-          var node = document.createElement('div')
+          var node = document.createElement('div') 
 
           node.innerHTML = '<div class="form-check  "><label class="form-check-label"><input id="check' + [i] + '" class="form-check-input checkboxAltera" type="checkbox" value="' +
             response.data[i].Email + '" > ' +

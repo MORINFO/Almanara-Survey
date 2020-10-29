@@ -49,7 +49,7 @@ class PesquisaController {
       cargo = 701
     }
 
-    const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo', 'CodFilial', 'Turnante')
+    const data = await Database.select('Codigo', 'Nome', 'Email', 'EmailAlternativo', 'CodFilial', 'Turnante', 'Check')
       .from('funcionarios001')
       .where('CodFilial', '=', params.filial)
       .andWhere('referencia', '=', '202005')

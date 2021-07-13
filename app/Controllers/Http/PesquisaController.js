@@ -124,19 +124,19 @@ class PesquisaController {
         }, (message) => {
           message.from('morinfo@morinfo.com.br')
             .to('rh@almanara.com.br')
-             .cc(['rh1@almanara.com.br', 'rh2@almanara.com.br', 'rh6@almanara.com.br', 'rh4@almanara.com.br'])
+            .cc(['rh1@almanara.com.br', 'rh2@almanara.com.br', 'rh6@almanara.com.br', 'rh4@almanara.com.br', 'rh8@almanara.com.br'])
             .bcc('nicolas@morinfo.com.br')
             .subject('Notificação de Possível Covid - ' + Filial)
         })
       }
-      catch{
+      catch {
         return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
       }
-       for (var i = 0; i < Gerentes.length; i++) {
+      for (var i = 0; i < Gerentes.length; i++) {
 
         if (!Gerentes[i] == '') {
           try {
-            await Mail.send('emails.email',{
+            await Mail.send('emails.email', {
               Matricula: Matricula,
               NomeFuncionario: NomeFuncionario,
               Temperatura: Temperatura,
@@ -152,7 +152,7 @@ class PesquisaController {
                 .subject('Notificação de Possível Covid - ' + Filial)
             })
           }
-          catch{
+          catch {
             return response.status(500).send({ mensagem: 'Erro ao enviar o Email ! ' })
           }
         }
@@ -191,7 +191,7 @@ class PesquisaController {
 
       return data
 
-    } catch{
+    } catch {
       return response.send({ mensagem: 'Pesquisa não Localizada !' })
     }
 
